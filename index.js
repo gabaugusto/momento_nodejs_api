@@ -52,50 +52,65 @@ app.get('/oscar/id/:id', (req, res) => {
       return;
     }
     if (results.length === 0) {
-      res.status(404).json({ error: 'Filme não encontrado' });
+      res.status(404).json({ error: 'Registro não encontrado' });
     } else {
-      res.json(results[0]);
-    }
-  });
-});
-
-// Rota para obter um registro por ano da filmagem
-app.get('/oscar/ano_filmagem/:ano', (req, res) => {
-  const { ano } = req.params;
-  const query = 'SELECT * FROM oscar WHERE ano_filmagem = ?';
-  db.query(query, [id], (err, results) => {
-    if (err) {
-      console.error('Erro ao buscar registro: ' + err);
-      res.status(500).json({ error: 'Erro ao buscar registro' });
-      return;
-    }
-    if (results.length === 0) {
-      res.status(404).json({ error: 'Filme não encontrado' });
-    } else {
-      res.json(results[0]);
+      res.json(results[0]); 
     }
   });
 });
 
 // Rota para obter um resgistro por nome do indicado
 app.get('/oscar/nome/:name', (req, res) => {
-    const { name } = req.params;
-    const query = `SELECT * FROM oscar WHERE nome_do_indicado LIKE "%${name}%" `;
-    db.query(query, [name], (err, results) => {
-      if (err) {
-        console.error('Erro ao buscar registro: ' + err);
-        res.status(500).json({ error: 'Erro ao buscar registro' });
-        return;
-      }
-      if (results.length === 0) {
-        res.status(404).json({ error: 'Registro não encontrado' });
-      } else {
-        res.json(results);
-      }
-    });
+  const { name } = req.params;
+    
+  const query = `SELECT * FROM ${tableDB} WHERE nome_do_indicado LIKE "%${name}%" `;
+  db.query(query, [name], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
   });
+});
+
+
+// Rota para obter um registro por ano da filmagem
+app.get('/oscar/ano_filmagem/:ano', (req, res) => {
+  const { ano } = req.params;
+  const query = `SELECT * FROM ${tableDB} WHERE ano_filmagem = ?`;
+  db.query(query, [ano], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para enviar dados para a API
+app.post('/enviar-dados', (req, res) => {
+  const { nome_do_indicado, nome_filme } = req.body;
+
+  // Faça o que você deseja com os dados, por exemplo, salvar no banco de dados
+
+  // Você pode retornar os dados para a página HTML se desejar
+  res.json({ nome_do_indicado, nome_filme });
+});
+
+// ...
+
 
 // Finalmente, iniciamos o servidor e aplicação estará disponível. 
 app.listen(port, () => {
-  console.log(`Servidor Express rodando na porta ${port}. Acesso através de http://localhost:${port}/`);
+  console.log(`Servidor Express rodando na porta ${port}. Acesso através de http://localhost:${port}/${tableDB}`);
 });
