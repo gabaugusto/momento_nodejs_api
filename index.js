@@ -26,11 +26,12 @@ db.connect((err) => {
   console.log('Conexão ao MySQL estabelecida'); // Sucesso
 });
 
-// Definir os endpoints da API
+const tableDB = 'oscar';
 
+// Definir os endpoints da API
 // Rota para obter todos os registros
 app.get('/oscar', (req, res) => {
-  const query = 'SELECT * FROM oscar';
+  const query = `SELECT * FROM ${tableDB}`;
   db.query(query, (err, results) => {
     if (err) {
       console.error('Erro ao buscar registros: ' + err);
@@ -44,7 +45,7 @@ app.get('/oscar', (req, res) => {
 // Rota para obter um registro por ID
 app.get('/oscar/id/:id', (req, res) => {
   const { id } = req.params;
-  const query = 'SELECT * FROM oscar WHERE id_registro = ?';
+  const query = `SELECT * FROM ${tableDB} WHERE id_registro = ?`;
   db.query(query, [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
