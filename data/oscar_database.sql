@@ -17,7 +17,7 @@ DROP TABLE IF EXISTS oscar;
 -- DEFAULT     -> (Se o campo estiver vazio ele preencherá automaticamente com o valor informado)
 -- DROP        -> Apagar um elemento
 
--- Exemplo de como criar uma Tabela
+-- Exemplo de como criar uma tabela
 -- CREATE TABLE oscar (
 CREATE TABLE IF NOT EXISTS oscar (
     id_registro int(11) PRIMARY KEY AUTO_INCREMENT,

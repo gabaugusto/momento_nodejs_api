@@ -4,16 +4,16 @@ const mysql = require('mysql');
 const app = express();
 
 //é necessário configurar o middleware express.json() para analisar o corpo da solicitação JSON. 
-app.use(express.json()); //
+app.use(express.json());
 
 
-const port = 3000; // Defina a porta que deseja executar o seu projeto. 
+const port = process.env.PORT || 3000; // Defina a porta que deseja executar o seu projeto. 
 
 // Configuração do banco de dados MySQL
 const db = mysql.createConnection({
   host: 'localhost',  // Endereço do servidor MySQL
   user: 'root', // Seu nome de usuário MySQL
-  password: '', // Sua senha do MySQL
+  password: 'password', // Sua senha do MySQL
   database: 'oscar_database' // Nome do banco de dados
 });
 
@@ -42,6 +42,24 @@ app.get('/oscar', (req, res) => {
   });
 });
 
+// Rota para obter filmes com paginação
+app.get('/filmes', (req, res) => {
+  const { page, limit } = req.query;
+  const start = (page - 1) * limit; // Cálculo do índice de início
+  const end = start + limit; // Cálculo do índice de término
+
+  // Execute a consulta SQL com a cláusula LIMIT
+  const query = 'SELECT * FROM oscar LIMIT ?';
+  db.query(query, [start, limit], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar filmes: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar filmes' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
 // Rota para obter um registro por ID
 app.get('/oscar/id/:id', (req, res) => {
   const { id } = req.params;
@@ -55,7 +73,7 @@ app.get('/oscar/id/:id', (req, res) => {
     if (results.length === 0) {
       res.status(404).json({ error: 'Registro não encontrado' });
     } else {
-      res.json(results[0]); 
+      res.json(results[0]);
     }
   });
 });
@@ -63,7 +81,7 @@ app.get('/oscar/id/:id', (req, res) => {
 // Rota para obter um resgistro por nome do indicado
 app.get('/oscar/nome/:name', (req, res) => {
   const { name } = req.params;
-    
+
   const query = `SELECT * FROM ${tableDB} WHERE nome_do_indicado LIKE "%${name}%" `;
   db.query(query, [name], (err, results) => {
     if (err) {
@@ -181,8 +199,8 @@ app.post('/enviar-dados', (req, res) => {
   res.json({ nome_do_indicado, nome_filme });
 });
 
-// ...
-
+// Configurar o Express para servir arquivos estáticos
+app.use(express.static('public'));
 
 // Finalmente, iniciamos o servidor e aplicação estará disponível. 
 app.listen(port, () => {
