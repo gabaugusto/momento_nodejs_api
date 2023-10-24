@@ -21,13 +21,13 @@ DROP TABLE IF EXISTS oscar;
 -- CREATE TABLE oscar (
 CREATE TABLE IF NOT EXISTS oscar (
     id_registro int(11) PRIMARY KEY AUTO_INCREMENT,
-    ano_filmagem INT(4) not null,
+    ano_filmagem INT(4),
     ano_cerimonia INT(4),
     edicao_cerimonia INT(4),
     categoria VARCHAR(512),
-    nome_do_indicado VARCHAR(512) not null,
-    nome_filme VARCHAR(512),
-    vencedor VARCHAR(10)
+    nome_do_indicado VARCHAR(512) NOT NULL,
+    nome_filme VARCHAR(512) NOT NULL,
+    vencedor VARCHAR(10) DEFAULT "Não"
 );
 
 

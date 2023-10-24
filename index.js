@@ -13,7 +13,7 @@ const port = 3000; // Defina a porta que deseja executar o seu projeto.
 const db = mysql.createConnection({
   host: 'localhost',  // Endereço do servidor MySQL
   user: 'root', // Seu nome de usuário MySQL
-  password: 'password', // Sua senha do MySQL
+  password: '', // Sua senha do MySQL
   database: 'oscar_database' // Nome do banco de dados
 });
 
@@ -85,6 +85,79 @@ app.get('/oscar/ano_filmagem/:ano', (req, res) => {
   const { ano } = req.params;
   const query = `SELECT * FROM ${tableDB} WHERE ano_filmagem = ?`;
   db.query(query, [ano], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter um registro por edicao da cerimonia 
+app.get('/oscar/edicao_cerimonia/:edicao', (req, res) => {
+  const { edicao } = req.params;
+  const query = `SELECT * FROM ${tableDB} WHERE edicao_cerimonia = ?`;
+  db.query(query, [edicao], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter um registro por edicao da cerimonia 
+app.get('/oscar/nome_filme /:filme', (req, res) => {
+  const { filme } = req.params;
+  const query = `SELECT * FROM ${tableDB} WHERE nome_filme LIKE "%${filme}%" ?`;
+  db.query(query, [filme], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+
+// Rota para obter um registro por categoria 
+app.get('/oscar/categoria/:categoria', (req, res) => {
+  const { categoria } = req.params;
+  const query = `SELECT * FROM ${tableDB} WHERE categoria LIKE "%${categoria}%" ?`;
+  db.query(query, [categoria], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter um registro por vencedor  
+app.get('/oscar/vencedor/:categoria', (req, res) => {
+  const { vencedor  } = req.params;
+  const query = `SELECT * FROM ${tableDB} WHERE vencedor LIKE "%${vencedor }%" ?`;
+  db.query(query, [vencedor ], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
       res.status(500).json({ error: 'Erro ao buscar registro' });
