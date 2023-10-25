@@ -6,14 +6,13 @@ const app = express();
 //é necessário configurar o middleware express.json() para analisar o corpo da solicitação JSON. 
 app.use(express.json());
 
-
 const port = process.env.PORT || 3000; // Defina a porta que deseja executar o seu projeto. 
 
 // Configuração do banco de dados MySQL
 const db = mysql.createConnection({
   host: 'localhost',  // Endereço do servidor MySQL
   user: 'root', // Seu nome de usuário MySQL
-  password: 'password', // Sua senha do MySQL
+  password: '', // Sua senha do MySQL
   database: 'oscar_database' // Nome do banco de dados
 });
 
@@ -56,6 +55,7 @@ app.get('/filmes', (req, res) => {
       res.status(500).json({ error: 'Erro ao buscar filmes' });
       return;
     }
+    console.log(results);
     res.json(results);
   });
 });
@@ -204,5 +204,8 @@ app.use(express.static('public'));
 
 // Finalmente, iniciamos o servidor e aplicação estará disponível. 
 app.listen(port, () => {
-  console.log(`Servidor Express rodando na porta ${port}. Acesso através de http://localhost:${port}/${tableDB}`);
+  console.log(`Servidor Express rodando na porta ${port}. 
+  Acesso a API através de http://localhost:${port}/${tableDB}
+  Acesso a interface através do endereço de http://localhost:${port}/`
+  );
 });

@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Prêmios do Oscar</title>
 </head>
+
 <body>
-    <h1>Prêmios do Oscar</h1>
+    <div class="container">
+        <h1>Prêmios do Oscar</h1>
 
-    <div>
-        <label for="resultsPerPage">Resultados por página:</label>
-        <select id="resultsPerPage">
-            <option selected value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-        </select>
+        <div>
+            <label for="resultsPerPage">Resultados por página:</label>
+            <select id="resultsPerPage">
+                <option selected value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+        </div>
+
+        <div>
+            <button id="prevPage" class="btn btn-primary">Anterior</button>
+            <span id="currentPage">Página: 1</span>
+            <button id="nextPage" class="btn btn-primary">Próximo</button>
+        </div>
+
+        <div id="filmList"></div>
     </div>
-
-    <div>
-        <button id="prevPage">Anterior</button>
-        <span id="currentPage">Página: 1</span>
-        <button id="nextPage">Próximo</button>
-    </div>
-
-    <table id="filmList"></table>
-
     <script>
         const resultsPerPage = document.getElementById('resultsPerPage');
         const prevPage = document.getElementById('prevPage');
         const nextPage = document.getElementById('nextPage');
         const currentPage = document.getElementById('currentPage');
         const filmList = document.getElementById('filmList');
-        let page = 1;
+        let page = 2;
 
         async function fetchAPI() {
             try {
@@ -44,8 +47,8 @@
 
                 if (data.length > 0) {
                     data.forEach((filme) => {
-                        const rowItem = document.createElement('tr');
-                        const listItem = document.createElement('td');
+                        const rowItem = document.createElement('div');
+                        const listItem = document.createElement('span');
                         listItem.textContent = `${filme.nome_do_indicado} | ${filme.nome_filme} | (${filme.ano_filmagem})`;
                         rowItem.appendChild(listItem);
                         filmList.appendChild(rowItem);
@@ -84,4 +87,5 @@
         window.addEventListener('load', fetchAPI);
     </script>
 </body>
+
 </html>
