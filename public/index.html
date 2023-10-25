@@ -35,7 +35,7 @@
         const nextPage = document.getElementById('nextPage');
         const currentPage = document.getElementById('currentPage');
         const filmList = document.getElementById('filmList');
-        let page = 2;
+        let page = 1;
 
         async function fetchAPI() {
             try {
@@ -49,7 +49,7 @@
                     data.forEach((filme) => {
                         const rowItem = document.createElement('div');
                         const listItem = document.createElement('span');
-                        listItem.textContent = `${filme.nome_do_indicado} | ${filme.nome_filme} | (${filme.ano_filmagem})`;
+                        listItem.textContent = `${filme.id_registro} - ${filme.nome_do_indicado} | ${filme.nome_filme} | (${filme.ano_filmagem})`;
                         rowItem.appendChild(listItem);
                         filmList.appendChild(rowItem);
                     });

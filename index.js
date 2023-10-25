@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000; // Defina a porta que deseja executar o s
 const db = mysql.createConnection({
   host: 'localhost',  // Endereço do servidor MySQL
   user: 'root', // Seu nome de usuário MySQL
-  password: '', // Sua senha do MySQL
+  password: 'password', // Sua senha do MySQL
   database: 'oscar_database' // Nome do banco de dados
 });
 
@@ -43,19 +43,24 @@ app.get('/oscar', (req, res) => {
 
 // Rota para obter filmes com paginação
 app.get('/filmes', (req, res) => {
-  const { page, limit } = req.query;
-  const start = (page - 1) * limit; // Cálculo do índice de início
-  const end = start + limit; // Cálculo do índice de término
+  let { page, limit } = req.query;
+  
+  page = parseInt(page);
+  limit = parseInt(limit);
 
+  let start = (page - 1) * limit; // Cálculo do índice de início
+  // Cálculo do índice de término. 
+  
   // Execute a consulta SQL com a cláusula LIMIT
-  const query = 'SELECT * FROM oscar LIMIT ?';
+  const query = `SELECT * FROM oscar LIMIT ${start},${limit}`;
+  console.log(`LIMITE ${limit}(${typeof(limit)}) - Page: ${page}(${typeof(page)}) - Start + ${start}(${typeof(start)})`)
   db.query(query, [start, limit], (err, results) => {
     if (err) {
       console.error('Erro ao buscar filmes: ' + err);
       res.status(500).json({ error: 'Erro ao buscar filmes' });
       return;
     }
-    console.log(results);
+    
     res.json(results);
   });
 });
