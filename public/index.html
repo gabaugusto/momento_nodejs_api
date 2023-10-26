@@ -27,7 +27,8 @@
             <button id="nextPage" class="btn btn-primary">Próximo</button>
         </div>
 
-        <div id="filmList"></div>
+
+        <div id="filmList" class="row"></div>
     </div>
     <script>
         const resultsPerPage = document.getElementById('resultsPerPage');
@@ -48,8 +49,17 @@
                 if (data.length > 0) {
                     data.forEach((filme) => {
                         const rowItem = document.createElement('div');
-                        const listItem = document.createElement('span');
-                        listItem.textContent = `${filme.id_registro} - ${filme.nome_do_indicado} | ${filme.nome_filme} | (${filme.ano_filmagem})`;
+                        rowItem.classList.add('card', 'col-3', 'm-1');
+
+                        const listItem = document.createElement('div');
+                        listItem.classList.add('card-body');
+
+                        listItem.innerHTML = `
+                            <h5 class="card-title">${filme.nome_do_indicado}</h5> - <span class="badge badge-pill badge-secondary">${filme.vencedor}</span>
+                            <h6 class="card-title">${filme.categoria}</h6>
+                            <p class="card-text">${filme.nome_filme}(${filme.ano_filmagem})</p>
+                            <p class="card-text">${filme.ano_cerimonia}(${filme.edicao_cerimonia})</p>`;
+                        
                         rowItem.appendChild(listItem);
                         filmList.appendChild(rowItem);
                     });

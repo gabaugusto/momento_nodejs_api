@@ -52,7 +52,7 @@ app.get('/filmes', (req, res) => {
   // Cálculo do índice de término. 
   
   // Execute a consulta SQL com a cláusula LIMIT
-  const query = `SELECT * FROM oscar LIMIT ${start},${limit}`;
+  const query = `SELECT * FROM oscar ORDER BY id_registro DESC LIMIT ${start},${limit}`;
   console.log(`LIMITE ${limit}(${typeof(limit)}) - Page: ${page}(${typeof(page)}) - Start + ${start}(${typeof(start)})`)
   db.query(query, [start, limit], (err, results) => {
     if (err) {
