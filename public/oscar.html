@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Prêmios do Oscar</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Prêmios do Oscar</h1>
+
+        <div>
+            <label for="resultsPerPage">Resultados por página:</label>
+            <select id="resultsPerPage">
+                <option selected value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+        </div>
+
+        <div>
+            <button id="prevPage" class="btn btn-primary">Anterior</button>
+            <span id="currentPage">Página: 1</span>
+            <button id="nextPage" class="btn btn-primary">Próximo</button>
+        </div>
+
+
+        <div id="filmList" class="row"></div>
+    </div>
+    <script>
+        const resultsPerPage = document.getElementById('resultsPerPage');
+        const prevPage = document.getElementById('prevPage');
+        const nextPage = document.getElementById('nextPage');
+        const currentPage = document.getElementById('currentPage');
+        const filmList = document.getElementById('filmList');
+        let page = 1;
+
+        async function fetchAPI() {
+            try {
+                const limit = resultsPerPage.value;
+                const response = await fetch(`/filmes?page=${page}&limit=${limit}`);
+                const data = await response.json();
+
+                filmList.innerHTML = ''; // Limpa a lista de filmes
+
+                if (data.length > 0) {
+                    data.forEach((filme) => {
+                        const rowItem = document.createElement('div');
+                        rowItem.classList.add('card', 'col-3', 'm-1');
+
+                        const listItem = document.createElement('div');
+                        listItem.classList.add('card-body');
+
+                        listItem.innerHTML = `
+                            <h5 class="card-title">${filme.nome_do_indicado}</h5> - <span class="badge badge-pill badge-secondary">${filme.vencedor}</span>
+                            <h6 class="card-title">${filme.categoria}</h6>
+                            <p class="card-text">${filme.nome_filme}(${filme.ano_filmagem})</p>
+                            <p class="card-text">${filme.ano_cerimonia}(${filme.edicao_cerimonia})</p>`;
+                        
+                        rowItem.appendChild(listItem);
+                        filmList.appendChild(rowItem);
+                    });
+                } else {
+                    filmList.innerHTML = 'Nenhum filme encontrado.';
+                }
+
+                currentPage.textContent = `Página: ${page}`;
+            } catch (error) {
+                console.error('Erro ao consumir a API:', error);
+            }
+        }
+
+        // Atualiza a página quando o botão "Anterior" é clicado
+        prevPage.addEventListener('click', () => {
+            if (page > 1) {
+                page--;
+                fetchAPI();
+            }
+        });
+
+        // Atualiza a página quando o botão "Próximo" é clicado
+        nextPage.addEventListener('click', () => {
+            page++;
+            fetchAPI();
+        });
+
+        // Atualiza a página quando a seleção de "Resultados por página" é alterada
+        resultsPerPage.addEventListener('change', () => {
+            page = 1; // Redefine a página ao alterar o limite de resultados
+            fetchAPI();
+        });
+
+        // Chama a função fetchAPI quando a página carrega
+        window.addEventListener('load', fetchAPI);
+    </script>
+</body>
+
+</html>

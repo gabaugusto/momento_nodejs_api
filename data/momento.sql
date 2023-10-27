@@ -1,60 +1,63 @@
+
+-- Criando o Modelo Físico
 DROP DATABASE IF EXISTS momento;
 CREATE DATABASE IF NOT EXISTS momento;
 USE momento;
 
 DROP TABLE IF EXISTS regioes;
-CREATE TABLE regiao (
-	regiao_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE regioes (
+	regiao_id INT AUTO_INCREMENT PRIMARY KEY,
 	regiao_nome VARCHAR(25) DEFAULT NULL
 );
 
 DROP TABLE IF EXISTS paises;
 CREATE TABLE paises (
 	pais_id CHAR(2) PRIMARY KEY,
-	pais_name VARCHAR(40) DEFAULT NULL,
-	regiao_id INT(11) NOT NULL,
+	pais_nome VARCHAR(40) DEFAULT NULL,
+	regiao_id INT NOT NULL,
 	FOREIGN KEY (regiao_id) REFERENCES regioes (regiao_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-DROP TABLE IF EXISTS posicoes;
-CREATE TABLE posicoes (
-	posicao_id INT(11) AUTO_INCREMENT PRIMARY KEY,
-	endereco VARCHAR(40) DEFAULT NULL,
+DROP TABLE IF EXISTS escritorios;
+CREATE TABLE escritorios (
+	escritorio_id INT AUTO_INCREMENT PRIMARY KEY,
+	escritorio_nome VARCHAR(48) DEFAULT NULL,
+	endereco VARCHAR(48) DEFAULT NULL,
 	cep VARCHAR(12) DEFAULT NULL,
-	cidade VARCHAR(30) NOT NULL,
-	estado VARCHAR(25) DEFAULT NULL,
+	cidade VARCHAR(48) NOT NULL,
+	estado VARCHAR(24) DEFAULT NULL,
 	pais_id CHAR(2) NOT NULL,
 	FOREIGN KEY (pais_id) REFERENCES paises (pais_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+DROP TABLE IF EXISTS departamentos;
+CREATE TABLE departamentos (
+	departamento_id INT AUTO_INCREMENT PRIMARY KEY,
+	departamento_nome VARCHAR(30) NOT NULL,
+	escritorio_id INT DEFAULT NULL,
+	FOREIGN KEY (escritorio_id) REFERENCES escritorios (escritorio_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
 DROP TABLE IF EXISTS ocupacoes;
 CREATE TABLE ocupacoes (
-	ocupacao_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+	ocupacao_id INT AUTO_INCREMENT PRIMARY KEY,
 	ocupacao_nome VARCHAR(35) NOT NULL,
 	min_salario DECIMAL(8, 2) DEFAULT NULL,
 	max_salario DECIMAL(8, 2) DEFAULT NULL
 );
 
-DROP TABLE IF EXISTS departamentos;
-CREATE TABLE departamentos (
-	departamento_id INT(11) AUTO_INCREMENT PRIMARY KEY,
-	departamento_nome VARCHAR(30) NOT NULL,
-	posicao_id INT(11) DEFAULT NULL,
-	FOREIGN KEY (posicao_id) REFERENCES posicoes (posicao_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 DROP TABLE IF EXISTS funcionarios; 
 CREATE TABLE funcionarios (
-	funcionario_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+	funcionario_id INT AUTO_INCREMENT PRIMARY KEY,
 	primeiro_nome VARCHAR(20) DEFAULT NULL,
 	sobrenome VARCHAR(25) NOT NULL,
 	email VARCHAR(100) NOT NULL,
 	telefone VARCHAR(20) DEFAULT NULL,
 	data_contratacao DATE NOT NULL,
-	ocupacao_id INT(11) NOT NULL,
+	ocupacao_id INT NOT NULL,
 	salario DECIMAL(8, 2) NOT NULL,
-	gerente_id INT(11) DEFAULT NULL,
-	departamento_id INT(11) DEFAULT NULL,
+	gerente_id INT DEFAULT NULL,
+	departamento_id INT DEFAULT NULL,
 	FOREIGN KEY (ocupacao_id) REFERENCES ocupacoes (ocupacao_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (departamento_id) REFERENCES departamentos (departamento_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (gerente_id) REFERENCES funcionarios (funcionario_id)
@@ -62,58 +65,68 @@ CREATE TABLE funcionarios (
 
 DROP TABLE IF EXISTS dependentes; 
 CREATE TABLE dependentes (
-	dependente_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+	dependente_id INT AUTO_INCREMENT PRIMARY KEY,
 	primeiro_nome VARCHAR(50) NOT NULL,
 	sobrenome VARCHAR(50) NOT NULL,
 	parentesco VARCHAR(25) NOT NULL,
-	funcionario_id INT(11) NOT NULL,
+	funcionario_id INT NOT NULL,
 	FOREIGN KEY (funcionario_id) REFERENCES funcionarios (funcionario_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-/*Data for the table regiao */
+-- Inserindo Dados
+
 INSERT INTO regioes(regiao_id,regiao_nome) VALUES (1,'Europa');
 INSERT INTO regioes(regiao_id,regiao_nome) VALUES (2,'Americas');
 INSERT INTO regioes(regiao_id,regiao_nome) VALUES (3,'Asia');
 INSERT INTO regioes(regiao_id,regiao_nome) VALUES (4,'Sula da Asia ou Africa');
 
-/*Data for the table paises */
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('AR','Argentina',2);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('AU','Australia',3);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('BE','Belgium',1);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('BR','Brazil',2);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('CA','Canada',2);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('CH','Switzerland',1);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('CN','China',3);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('DE','Germany',1);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('DK','Denmark',1);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('EG','Egypt',4);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('FR','France',1);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('HK','HongKong',3);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('IL','Israel',4);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('IN','India',3);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('IT','Italy',1);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('JP','Japan',3);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('KW','Kuwait',4);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('MX','Mexico',2);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('NG','Nigeria',4);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('NL','Netherlands',1);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('SG','Singapore',3);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('UK','United Kingdom',1);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('US','United States of America',2);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('ZM','Zambia',4);
-INSERT INTO paises(pais_id,pais_name,regiao_id) VALUES ('ZW','Zimbabwe',4);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('AR','Argentina',2);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('AU','Australia',3);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('BE','Belgium',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('BR','Brazil',2);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('CA','Canada',2);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('CH','Switzerland',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('CN','China',3);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('DE','Germany',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('DK','Denmark',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('EG','Egypt',4);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('FR','France',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('HK','HongKong',3);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('IL','Israel',4);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('IN','India',3);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('IT','Italy',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('JP','Japan',3);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('KW','Kuwait',4);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('MX','Mexico',2);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('NG','Nigeria',4);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('NL','Netherlands',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('SG','Singapore',3);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('UK','United Kingdom',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('US','United States of America',2);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('ZM','Zambia',4);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('ZW','Zimbabwe',4);
 
-/*Data for the table posicao */
-INSERT INTO posicoes(posicao_id,endereco,cep,cidade,estado,pais_id) VALUES (1400,'2014 Jabberwocky Rd','26192','Southlake','Texas','US');
-INSERT INTO posicoes(posicao_id,endereco,cep,cidade,estado,pais_id) VALUES (1500,'2011 Interiors Blvd','99236','South San Francisco','California','US');
-INSERT INTO posicoes(posicao_id,endereco,cep,cidade,estado,pais_id) VALUES (1700,'2004 Charade Rd','98199','Seattle','Washington','US');
-INSERT INTO posicoes(posicao_id,endereco,cep,cidade,estado,pais_id) VALUES (1800,'147 Spadina Ave','M5V 2L7','Toronto','Ontario','CA');
-INSERT INTO posicoes(posicao_id,endereco,cep,cidade,estado,pais_id) VALUES (2400,'8204 Arthur St',NULL,'London',NULL,'UK');
-INSERT INTO posicoes(posicao_id,endereco,cep,cidade,estado,pais_id) VALUES (2500,'Magdalen Centre, The Oxford Science Park','OX9 9ZB','Oxford','Oxford','UK');
-INSERT INTO posicoes(posicao_id,endereco,cep,cidade,estado,pais_id) VALUES (2700,'Schwanthalerstr. 7031','80925','Munich','Bavaria','DE');
-INSERT INTO posicoes(posicao_id,endereco,cep,cidade,estado,pais_id) VALUES (5400,'Rua Tito, 54','05051-000','São Paulo','São Paulo','BR');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1400,'Sala Winter', '2014 Jabberwocky Rd','26192','Southlake','Texas','US');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1500,'Stark Tower','2011 Interiors Blvd','99236','South San Francisco','California','US');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1700,'Wayne Offices','2004 Charade Rd','98199','Seattle','Washington','US');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1800,'Arkham Base','147 Spadina Ave','M5V 2L7','Toronto','Ontario','CA');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2400,'','8204 Arthur St',NULL,'London',NULL,'UK');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2500,'Umbrella Corp','Magdalen Centre, The Oxford Science Park','OX9 9ZB','Oxford','Oxford','UK');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2700,'Baxter Building','Schwanthalerstr. 7031','80925','Munich','Bavaria','DE');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (5400,'','Rua Tito, 54','05051-000','São Paulo','São Paulo','BR');
 
-/*Data for the table ocupacoes */
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (1,'Admnistração',1700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (2,'Marketing',1800);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (3,'Compras',1700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (4,'Recursos Humanos',2400);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (5,'Transporte',1500);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (6,'Tecnologia',1400);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (7,'Relações Públicas',2700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (8,'Vendas',2500);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (9,'Executivo',1700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (10,'Finanças',1700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (11,'Contabilidade',1700);
+
 INSERT INTO ocupacoes(ocupacao_id,ocupacao_nome,min_salario,max_salario) VALUES (1,'Auxiliar de Almoxarifado Júnior',4200.00,9000.00);
 INSERT INTO ocupacoes(ocupacao_id,ocupacao_nome,min_salario,max_salario) VALUES (2,'Gerente de contabilidade',8200.00,16000.00);
 INSERT INTO ocupacoes(ocupacao_id,ocupacao_nome,min_salario,max_salario) VALUES (3,'Assistente Administrativo',3000.00,6000.00);
@@ -134,21 +147,6 @@ INSERT INTO ocupacoes(ocupacao_id,ocupacao_nome,min_salario,max_salario) VALUES 
 INSERT INTO ocupacoes(ocupacao_id,ocupacao_nome,min_salario,max_salario) VALUES (18,'Estoquista',2000.00,5000.00);
 INSERT INTO ocupacoes(ocupacao_id,ocupacao_nome,min_salario,max_salario) VALUES (19,'Gerente de Estoque',5500.00,8500.00);
 
-
-/*Data for the table departamento */
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (1,'Admnistração',1700);
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (2,'Marketing',1800);
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (3,'Compras',1700);
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (4,'Recursos Humanos',2400);
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (5,'Transporte',1500);
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (6,'Tecnologia',1400);
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (7,'Relações Públicas',2700);
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (8,'Vendas',2500);
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (9,'Executivo',1700);
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (10,'Finanças',1700);
-INSERT INTO departamentos(departamento_id,departamento_nome,posicao_id) VALUES (11,'Contabilidade',1700);
-
-/*Data for the table funcionarios */
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,telefone,data_contratacao,ocupacao_id,salario,gerente_id,departamento_id) VALUES (100,'Steven','King','steven.king@momento.org','515.123.4567','1987-06-17',4,24000.00,NULL,9);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,telefone,data_contratacao,ocupacao_id,salario,gerente_id,departamento_id) VALUES (101,'Neena','Kochhar','neena.kochhar@momento.org','515.123.4568','1989-09-21',5,17000.00,100,9);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,telefone,data_contratacao,ocupacao_id,salario,gerente_id,departamento_id) VALUES (102,'Lex','De Haan','lex.de haan@momento.org','515.123.4569','1993-01-13',5,17000.00,100,9);
@@ -225,9 +223,53 @@ INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcion
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (29,'Alec','Partners','Filho(a)',146);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (30,'Sandra','Taylor','Filho(a)',176);
 
+-- Criando a VIEW sobre funcionários 
+CREATE  OR REPLACE VIEW `dados_funcionarios` AS
+SELECT 
+	funcionarios.funcionario_id AS funcionario_id, 
+    funcionarios.primeiro_nome AS primeiro_nome, 
+    funcionarios.sobrenome AS sobrenome, 
+    funcionarios.telefone AS telefone, 
+    funcionarios.data_contratacao AS data_contratacao, 
+    funcionarios.salario AS salario, 
+    ocupacoes.ocupacao_nome AS cargo, 
+    ocupacoes.min_salario AS min_salario, 
+    ocupacoes.max_salario AS max_salario, 
+    departamentos.departamento_nome AS departamento, 
+    escritorios.escritorio_nome AS escritorio_nome, 
+    escritorios.endereco AS escritorio_endereco, 
+    paises.pais_nome AS pais, 
+    regioes.regiao_nome  AS regiao
 
-SELECT funcionarios.funcionario_id, funcionarios.primeiro_nome, funcionarios.sobrenome, funcionarios.telefone, funcionarios.data_contratacao, funcionarios.salario, departamentos.departamento_nome, ocupacoes.ocupacao_nome, ocupacoes.min_salario, ocupacoes.max_salario FROM funcionarios
+ FROM funcionarios
+
 INNER JOIN ocupacoes 
-ON funcionarios.ocupacao_id = ocupacoes.ocupacao_id
+	ON funcionarios.ocupacao_id = ocupacoes.ocupacao_id
 INNER JOIN departamentos 
-ON funcionarios.departamento_id = departamentos.departamento_id; 
+	ON funcionarios.departamento_id = departamentos.departamento_id
+INNER JOIN escritorios 
+	ON departamentos.escritorio_id = escritorios.escritorio_id
+INNER JOIN paises 
+	ON escritorios.pais_id = paises.pais_id
+INNER JOIN regioes 
+	ON paises.regiao_id = regioes.regiao_id;
+
+-- Selecionando dados da VIEW
+SELECT * From dados_funcionarios;
+
+
+-- Criando a VIEW sobre dependentes 
+CREATE  OR REPLACE VIEW `dados_dependentes` AS
+SELECT 
+	dependentes.dependente_id AS dependente_id, 
+    dependentes.primeiro_nome AS primeiro_nome,
+	dependentes.sobrenome AS sobrenome,
+	dependentes.parentesco AS parentesco,
+	funcionarios.funcionario_id AS funcionario_id, 
+	funcionarios.primeiro_nome AS funcionario_primeiro_nome, 
+    funcionarios.sobrenome AS funcionario_sobrenome
+
+ FROM dependentes
+
+INNER JOIN funcionarios 
+	ON dependentes.funcionario_id = funcionarios.funcionario_id;

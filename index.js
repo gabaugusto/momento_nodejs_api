@@ -6,14 +6,15 @@ const app = express();
 //é necessário configurar o middleware express.json() para analisar o corpo da solicitação JSON. 
 app.use(express.json());
 
-const port = process.env.PORT || 3000; // Defina a porta que deseja executar o seu projeto. 
+const port = 3000; // Defina a porta que deseja executar o seu projeto. 
 
 // Configuração do banco de dados MySQL
 const db = mysql.createConnection({
   host: 'localhost',  // Endereço do servidor MySQL
+  port:3308,
   user: 'root', // Seu nome de usuário MySQL
-  password: 'password', // Sua senha do MySQL
-  database: 'oscar_database' // Nome do banco de dados
+  password: 'senac', // Sua senha do MySQL
+  database: 'momento' // Nome do banco de dados
 });
 
 // Tenta conectar o MySQL. 
@@ -25,12 +26,16 @@ db.connect((err) => {
   console.log('Conexão ao MySQL estabelecida'); // Sucesso
 });
 
-const tableDB = 'oscar';
+
+/////////////////////////////////////////////
+/* 
+Funcionarios
+///////////////////////////////////////////*/
 
 // Definir os endpoints da API
 // Rota para obter todos os registros
-app.get('/oscar', (req, res) => {
-  const query = `SELECT * FROM ${tableDB}`;
+app.get('/funcionarios', (req, res) => {
+  const query = `SELECT * FROM dados_funcionarios ORDER BY primeiro_nome `;
   db.query(query, (err, results) => {
     if (err) {
       console.error('Erro ao buscar registros: ' + err);
@@ -41,8 +46,8 @@ app.get('/oscar', (req, res) => {
   });
 });
 
-// Rota para obter filmes com paginação
-app.get('/filmes', (req, res) => {
+// Rota para obter funcionarios com paginação
+app.get('/funcionarios-pag', (req, res) => {
   let { page, limit } = req.query;
   
   page = parseInt(page);
@@ -52,7 +57,7 @@ app.get('/filmes', (req, res) => {
   // Cálculo do índice de término. 
   
   // Execute a consulta SQL com a cláusula LIMIT
-  const query = `SELECT * FROM ${tableDB} ORDER BY id_registro DESC LIMIT ${start},${limit}`;
+  const query = `SELECT * FROM dados_funcionarios ORDER BY funcionario_id DESC LIMIT ${start},${limit}`;
   console.log(`LIMITE ${limit}(${typeof(limit)}) - Page: ${page}(${typeof(page)}) - Start + ${start}(${typeof(start)})`)
   db.query(query, [start, limit], (err, results) => {
     if (err) {
@@ -65,10 +70,10 @@ app.get('/filmes', (req, res) => {
   });
 });
 
-// Rota para obter um registro por ID
-app.get('/oscar/id/:id', (req, res) => {
+// Rota para obter um funcionario por ID
+app.get('/funcionarios/id/:id', (req, res) => {
   const { id } = req.params;
-  const query = `SELECT * FROM ${tableDB} WHERE id_registro = ?`;
+  const query = `SELECT * FROM dados_funcionarios WHERE funcionario_id = ?`;
   db.query(query, [id], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
@@ -83,11 +88,10 @@ app.get('/oscar/id/:id', (req, res) => {
   });
 });
 
-// Rota para obter um resgistro por nome do indicado
-app.get('/oscar/nome/:name', (req, res) => {
+// Rota para obter um registro por nome
+app.get('/funcionarios/nome/:name', (req, res) => {
   const { name } = req.params;
-
-  const query = `SELECT * FROM ${tableDB} WHERE nome_do_indicado LIKE "%${name}%" `;
+  const query = `SELECT * FROM dados_funcionarios WHERE primeiro_nome LIKE "%${name}%" OR sobrenome LIKE "%${name}%"`;
   db.query(query, [name], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
@@ -102,12 +106,11 @@ app.get('/oscar/nome/:name', (req, res) => {
   });
 });
 
-
-// Rota para obter um registro por ano da filmagem
-app.get('/oscar/ano_filmagem/:ano', (req, res) => {
-  const { ano } = req.params;
-  const query = `SELECT * FROM ${tableDB} WHERE ano_filmagem = ?`;
-  db.query(query, [ano], (err, results) => {
+// Rota para obter um registro por email
+app.get('/funcionarios/email/:email', (req, res) => {
+  const { email } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE email LIKE "%${email}%"`;
+  db.query(query, [email], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
       res.status(500).json({ error: 'Erro ao buscar registro' });
@@ -121,11 +124,12 @@ app.get('/oscar/ano_filmagem/:ano', (req, res) => {
   });
 });
 
-// Rota para obter um registro por edicao da cerimonia 
-app.get('/oscar/cerimonia/:edicao', (req, res) => {
-  const { edicao } = req.params;
-  const query = `SELECT * FROM ${tableDB} WHERE edicao_cerimonia = ?`;
-  db.query(query, [edicao], (err, results) => {
+
+// Rota para obter um registro por telefone
+app.get('/funcionarios/telefone/:phone', (req, res) => {
+  const { phone } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE telefone LIKE "%${phone}%"`;
+  db.query(query, [phone], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
       res.status(500).json({ error: 'Erro ao buscar registro' });
@@ -139,10 +143,173 @@ app.get('/oscar/cerimonia/:edicao', (req, res) => {
   });
 });
 
-// Rota para obter um registro por edicao da cerimonia 
-app.get('/oscar/filme/:name', (req, res) => {
+
+// Rota para obter um registro pelo nome do departamento
+app.get('/funcionarios/departamento/:nome', (req, res) => {
+  const { nome } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE departamento_nome LIKE "%${nome}%"`;
+  db.query(query, [nome], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter um registro pelo nome do cargo
+app.get('/funcionarios/cargo/:nome', (req, res) => {
+  const { nome } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE cargo LIKE "%${nome}%"`;
+  db.query(query, [nome], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter um registro pelo nome do escritorio
+app.get('/funcionarios/escritorio/nome/:nome', (req, res) => {
+  const { nome } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE escritorio_nome LIKE "%${nome}%"`;
+  db.query(query, [nome], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter um registro pelo nome do endereco
+app.get('/funcionarios/escritorio/endereco/:nome', (req, res) => {
+  const { nome } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE endereco_escritorio LIKE "%${nome}%"`;
+  db.query(query, [nome], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter um registro pelo nome do pais
+app.get('/funcionarios/pais/:nome', (req, res) => {
+  const { nome } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE pais LIKE "%${nome}%"`;
+  db.query(query, [nome], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter um registro pelo nome do pais
+app.get('/funcionarios/regiao/:nome', (req, res) => {
+  const { nome } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE regiao LIKE "%${nome}%"`;
+  db.query(query, [nome], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter um registro pelo salario menor que
+app.get('/funcionarios/salario_lt/:valor', (req, res) => {
+  const { valor } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE salario < ${valor} ORDER BY salario`;
+  db.query(query, [valor], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+// Rota para obter um registro pelo salario maior que
+app.get('/funcionarios/salario_gt/:valor', (req, res) => {
+  const { valor } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE salario > ${valor} ORDER BY salario`;
+  db.query(query, [valor], (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registro: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registro' });
+      return;
+    }
+    if (results.length === 0) {
+      res.status(404).json({ error: 'Registro não encontrado' });
+    } else {
+      res.json(results);
+    }
+  });
+});
+
+/////////////////////////////////////////////
+/* 
+Dependentes
+///////////////////////////////////////////*/
+// Definir os endpoints da API
+// Rota para obter todos os registros
+app.get('/dependentes', (req, res) => {
+  const query = `SELECT * FROM dados_dependentes ORDER BY primeiro_nome `;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Erro ao buscar registros: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar registros' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+// Rota para obter um registro por nome
+app.get('/dependentes/nome/:name', (req, res) => {
   const { name } = req.params;
-  const query = `SELECT * FROM ${tableDB} WHERE nome_filme LIKE "%${name}%"`;
+  const query = `SELECT * FROM dados_dependentes WHERE primeiro_nome LIKE "%${name}%" OR sobrenome LIKE "%${name}%"`;
   db.query(query, [name], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
@@ -157,42 +324,6 @@ app.get('/oscar/filme/:name', (req, res) => {
   });
 });
 
-
-// Rota para obter um registro por categoria 
-app.get('/oscar/categoria/:name', (req, res) => {
-  const { name } = req.params;
-  const query = `SELECT * FROM ${tableDB} WHERE categoria LIKE "%${name}%"`;
-  db.query(query, [name], (err, results) => {
-    if (err) {
-      console.error('Erro ao buscar registro: ' + err);
-      res.status(500).json({ error: 'Erro ao buscar registro' });
-      return;
-    }
-    if (results.length === 0) {
-      res.status(404).json({ error: 'Registro não encontrado' });
-    } else {
-      res.json(results);
-    }
-  });
-});
-
-// Rota para obter um registro por vencedor  
-app.get('/oscar/vencedor/:vencedor', (req, res) => {
-  const { vencedor } = req.params;
-  const query = `SELECT * FROM ${tableDB} WHERE vencedor LIKE "%${vencedor}%"`;
-  db.query(query, [vencedor], (err, results) => {
-    if (err) {
-      console.error('Erro ao buscar registro: ' + err);
-      res.status(500).json({ error: 'Erro ao buscar registro' });
-      return;
-    }
-    if (results.length === 0) {
-      res.status(404).json({ error: 'Registro não encontrado' });
-    } else {
-      res.json(results);
-    }
-  });
-});
 
 // Rota para enviar dados para a API
 app.post('/enviar-dados', (req, res) => {
@@ -210,7 +341,6 @@ app.use(express.static('public'));
 // Finalmente, iniciamos o servidor e aplicação estará disponível. 
 app.listen(port, () => {
   console.log(`Servidor Express rodando na porta ${port}. 
-  Acesso a API através de http://localhost:${port}/${tableDB}
-  Acesso a interface através do endereço de http://localhost:${port}/`
+   Acesso através do endereço de http://localhost:${port}/`
   );
 });
