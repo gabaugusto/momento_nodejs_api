@@ -30,7 +30,7 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Endpoint / Parâmetros de URL:** /funcionarios/id/:funcionario_id
 
-**Parâmetros de URL:** funcionario_id (integer) - ID do funcionário desejado.
+**Parâmetros de URL:** ```funcionario_id ``` (integer) - ID do funcionário desejado.
 
 --- 
 
@@ -38,7 +38,7 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Endpoint / Parâmetros de URL:** /funcionarios/nome/:nome
 
-**Parâmetros de URL:** nome (string) - Noe do funcionário desejado.
+**Parâmetros de URL:**  ```nome ``` (string) - Noe do funcionário desejado.
 
 ---
 
@@ -46,7 +46,7 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Endpoint / Parâmetros de URL:** /funcionarios/departamento/:nome
 
-**Parâmetros de URL:** nome (string) - Nome do departamento desejado.
+**Parâmetros de URL:**  ```nome ``` (string) - Nome do departamento desejado.
 
 --- 
 
@@ -54,7 +54,7 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Endpoint / Parâmetros de URL:** /funcionarios/cargo/:cargo
 
-**Parâmetros de URL:** cargo (string) - Nome do cargo desejado.
+**Parâmetros de URL:**  ```cargo ``` (string) - Nome do cargo desejado.
 
 --- 
 
@@ -70,7 +70,7 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Endpoint / Parâmetros de URL:** /funcionarios/salario_gt/:valor
 
-**Parâmetros de URL:** valor (int) - valor base para pesquisar valores **maiores**
+**Parâmetros de URL:**  ```valor ``` (int) - valor base para pesquisar valores **maiores**
 
 --- 
 
@@ -78,7 +78,7 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Endpoint / Parâmetros de URL:** /funcionarios/salario_lt/:valor
 
-**Parâmetros de URL:** valor (int) - valor base para pesquisar valores **menores**
+**Parâmetros de URL:**  ```valor ``` (int) - valor base para pesquisar valores **menores**
 
 --- 
 
@@ -86,7 +86,7 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Endpoint / Parâmetros de URL:** /funcionarios/escritorio/nome/:nome
 
-**Parâmetros de URL:** nome (string) - nome da sala do escritório desejado.
+**Parâmetros de URL:**  ```nome ``` (string) - nome da sala do escritório desejado.
 
 **Exemplo de Requisição:** ```GET /funcionarios/escritorio/nome/Beta```
 
@@ -94,7 +94,7 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Endpoint / Parâmetros de URL:** /funcionarios/escritorio/endereco/:endereco
 
-**Parâmetros de URL:** endereco (string) - endereço da sala do escritório desejado.
+**Parâmetros de URL:**  ```endereco ``` (string) - endereço da sala do escritório desejado.
 
 **Exemplo de Requisição:** ```GET /funcionarios/escritorio/endereco/Bobos```
 
