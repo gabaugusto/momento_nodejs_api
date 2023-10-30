@@ -24,65 +24,65 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Descrição**: Retorna uma lista de todos os funcionários disponíveis.
 
---- 
-
 **Exemplo de Requisição:** ```GET /funcionarios```
+
+--- 
 
 **Endpoint / Parâmetros de URL:** /funcionarios/id/:funcionario_id
 
 **Parâmetros de URL:** ```funcionario_id ``` (integer) - ID do funcionário desejado.
 
---- 
-
 **Exemplo de Requisição:** ```GET /funcionarios/123```
+
+--- 
 
 **Endpoint / Parâmetros de URL:** /funcionarios/nome/:nome
 
 **Parâmetros de URL:**  ```nome ``` (string) - Noe do funcionário desejado.
 
----
-
 **Exemplo de Requisição:** ```GET /funcionarios/nome/Alessandra Neves```
+
+---
 
 **Endpoint / Parâmetros de URL:** /funcionarios/departamento/:nome
 
 **Parâmetros de URL:**  ```nome ``` (string) - Nome do departamento desejado.
 
---- 
-
 **Exemplo de Requisição:** ```GET /funcionarios/departamento/marketing```
+
+--- 
 
 **Endpoint / Parâmetros de URL:** /funcionarios/cargo/:cargo
 
 **Parâmetros de URL:**  ```cargo ``` (string) - Nome do cargo desejado.
 
---- 
-
 **Exemplo de Requisição:** ```GET /funcionarios/cargo/contador```
+
+--- 
 
 **Endpoint / Parâmetros de URL:** /funcionarios/regiao/:nome
 
 **Parâmetros de URL:** `nome` (string) - Nome da região desejada.
 
---- 
-
 **Exemplo de Requisição:** ```GET /funcionarios/regiao/Americas```
+
+--- 
 
 **Endpoint / Parâmetros de URL:** /funcionarios/salario_gt/:valor
 
 **Parâmetros de URL:**  ```valor ``` (int) - valor base para pesquisar valores **maiores**
 
---- 
-
 **Exemplo de Requisição:** ```GET /funcionarios/salario_gt/2000```
+
+--- 
 
 **Endpoint / Parâmetros de URL:** /funcionarios/salario_lt/:valor
 
 **Parâmetros de URL:**  ```valor ``` (int) - valor base para pesquisar valores **menores**
 
---- 
-
 **Exemplo de Requisição:** ```GET /funcionarios/salario_lt/3000```
+
+--- 
 
 **Endpoint / Parâmetros de URL:** /funcionarios/escritorio/nome/:nome
 
