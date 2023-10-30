@@ -1,17 +1,19 @@
-# API do Projeto Momento
+# Projeto Momento em NodeJS (para Estudantes)
 
-Este projeto foi criado para aprender e explorar o desenvolvimento de APIs usando o Spring Boot.
+Este projeto foi criado para aprender e explorar o desenvolvimento de APIs usando NodeJS
 
-Este projeto possui uma API básica construída usando NodeJS e MySQL. Serve como exemplo para uso em sala de aula, fornecendo uma introdução à construção de APIs com SpringBoot e mostrando vários recursos e potencialidades das tecnologias envolvidas.
+Este projeto possui uma API básica construída usando NodeJS e MySQL. Serve como exemplo para uso em sala de aula, fornecendo uma introdução à construção de APIs com NodeJS e mostrando vários recursos e potencialidades das tecnologias envolvidas.
 
 ## Tecnologias usadas
-**HTML e CSS:** Tecnologias para desenvolvimento de interface web.
+**HTML e CSS**: Tecnologias para desenvolvimento de interface web.
 
-**Javascript:** Interação do usuário e utilização do fetch para consumo da API.
+**Javascript**: Linguagem de programação utilizada para construir e consumir a API além da interação do usuário.
 
-**Postman:** Uma plataforma de colaboração para desenvolvimento e teste de API, que pode ser usada para interagir e testar os endpoints da API.
+**NodeJS**: Uma estrutura poderosa para desenvolver programas e aplicações muito além da web. Neste foi utilizada para a construção da RESTful APIs.
 
-**MySQL:**
+**Postman**: Uma plataforma de colaboração para desenvolvimento e teste de API, que pode ser usada para interagir e testar os endpoints da API.
+
+**MySQL**: MySQL é um sistema de gerenciamento de banco de dados relacional de código aberto. Seu nome é uma combinação de "My", o nome da filha do cofundador Michael Widenius, My, e "SQL", a sigla para Structured Query Language.
 
 ## Funcionários
 Retorna informações sobre um funcionário com base no ID.
