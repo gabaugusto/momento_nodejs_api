@@ -1,6 +1,4 @@
-# API using NodeJS
-
-Bem-vindo à API da Projeto Momento! 
+# API do Projeto Momento
 
 Este projeto foi criado para aprender e explorar o desenvolvimento de APIs usando o Spring Boot.
 
@@ -24,7 +22,7 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Descrição**: Retorna uma lista de todos os funcionários disponíveis.
 
-###
+--- 
 
 **Exemplo de Requisição:** ```GET /funcionarios```
 
@@ -56,11 +54,15 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Parâmetros de URL:** cargo (string) - Nome do cargo desejado.
 
+--- 
+
 **Exemplo de Requisição:** ```GET /funcionarios/cargo/contador```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/regiao/:nome
 
 **Parâmetros de URL:** `nome` (string) - Nome da região desejada.
+
+--- 
 
 **Exemplo de Requisição:** ```GET /funcionarios/regiao/Americas```
 
@@ -68,25 +70,33 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Parâmetros de URL:** valor (int) - valor base para pesquisar valores **maiores**
 
+--- 
+
 **Exemplo de Requisição:** ```GET /funcionarios/salario_gt/2000```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/salario_lt/:valor
 
 **Parâmetros de URL:** valor (int) - valor base para pesquisar valores **menores**
 
+--- 
+
 **Exemplo de Requisição:** ```GET /funcionarios/salario_lt/3000```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/escritorio/nome/:nome
 
-**Parâmetros de URL:** nome (string) - nome da sala do escritório desejado na base de dados.
+**Parâmetros de URL:** nome (string) - nome da sala do escritório desejado.
 
 **Exemplo de Requisição:** ```GET /funcionarios/escritorio/nome/Beta```
 
+--- 
+
 **Endpoint / Parâmetros de URL:** /funcionarios/escritorio/endereco/:endereco
 
-**Parâmetros de URL:** endereco (string) - endereço da sala do escritório desejado na base de dados.
+**Parâmetros de URL:** endereco (string) - endereço da sala do escritório desejado.
 
 **Exemplo de Requisição:** ```GET /funcionarios/escritorio/endereco/Bobos```
+
+--- 
 
 TODOS os endpoints acima trarão o mesmo tipo de resposta: 
 
