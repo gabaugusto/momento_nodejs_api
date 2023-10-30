@@ -12,8 +12,8 @@ const port = 3000; // Defina a porta que deseja executar o seu projeto.
 const db = mysql.createConnection({
   host: 'localhost',  // Endereço do servidor MySQL
   port: 3306,
-  user: '', // Seu nome de usuário MySQL
-  password: '', // Sua senha do MySQL
+  user: 'root', // Seu nome de usuário MySQL
+  password: 'password', // Sua senha do MySQL
   database: 'momento' // Nome do banco de dados
 });
 
@@ -68,8 +68,8 @@ app.get('/funcionarios-pag', (req, res) => {
   console.log(`LIMITE ${limit}(${typeof(limit)}) - Page: ${page}(${typeof(page)}) - Start + ${start}(${typeof(start)})`)
   db.query(query, [start, limit], (err, results) => {
     if (err) {
-      console.error('Erro ao buscar filmes: ' + err);
-      res.status(500).json({ error: 'Erro ao buscar filmes' });
+      console.error('Erro ao buscar funcionários: ' + err);
+      res.status(500).json({ error: 'Erro ao buscar funcionários' });
       return;
     }
     
