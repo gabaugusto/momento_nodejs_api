@@ -8,8 +8,11 @@ Este projeto possui uma API básica construída usando NodeJS e MySQL. Serve com
 
 ## Tecnologias usadas
 **HTML e CSS:** Tecnologias para desenvolvimento de interface web.
+
 **Javascript:** Interação do usuário e utilização do fetch para consumo da API.
+
 **Postman:** Uma plataforma de colaboração para desenvolvimento e teste de API, que pode ser usada para interagir e testar os endpoints da API.
+
 **MySQL:**
 
 ## Funcionários
@@ -18,43 +21,63 @@ Retorna informações sobre um funcionário com base no ID.
 **Método HTTP:** GET
 
 **Endpoint / Parâmetros de URL:** /funcionarios
+
 **Descrição**: Retorna uma lista de todos os funcionários disponíveis.
+
 **Exemplo de Requisição:** ```GET /funcionarios```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/id/:funcionario_id
+
 **Parâmetros de URL:** funcionario_id (integer) - ID do funcionário desejado.
+
 **Exemplo de Requisição:** ```GET /funcionarios/123```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/nome/:nome
+
 **Parâmetros de URL:** nome (string) - Noe do funcionário desejado.
+
 **Exemplo de Requisição:** ```GET /funcionarios/nome/Alessandra Neves```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/departamento/:nome
+
 **Parâmetros de URL:** nome (string) - Nome do departamento desejado.
+
 **Exemplo de Requisição:** ```GET /funcionarios/departamento/marketing```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/cargo/:cargo
+
 **Parâmetros de URL:** cargo (string) - Nome do cargo desejado.
+
 **Exemplo de Requisição:** ```GET /funcionarios/cargo/contador```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/regiao/:nome
+
 **Parâmetros de URL:** `nome` (string) - Nome da região desejada.
+
 **Exemplo de Requisição:** ```GET /funcionarios/regiao/Americas```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/salario_gt/:valor
+
 **Parâmetros de URL:** valor (int) - valor base para pesquisar valores **maiores**
+
 **Exemplo de Requisição:** ```GET /funcionarios/salario_gt/2000```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/salario_lt/:valor
+
 **Parâmetros de URL:** valor (int) - valor base para pesquisar valores **menores**
+
 **Exemplo de Requisição:** ```GET /funcionarios/salario_lt/3000```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/escritorio/nome/:nome
+
 **Parâmetros de URL:** nome (string) - nome da sala do escritório desejado na base de dados.
+
 **Exemplo de Requisição:** ```GET /funcionarios/escritorio/nome/Beta```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/escritorio/endereco/:endereco
+
 **Parâmetros de URL:** endereco (string) - endereço da sala do escritório desejado na base de dados.
+
 **Exemplo de Requisição:** ```GET /funcionarios/escritorio/endereco/Bobos```
 
 TODOS os endpoints acima trarão o mesmo tipo de resposta: 
@@ -84,7 +107,9 @@ TODOS os endpoints acima trarão o mesmo tipo de resposta:
 Esta API apresentará os seguintes recursos:
 
 1. **Operações CRUD**: a API oferece suporte a operações básicas de CRUD (Criar, Ler, Atualizar, Excluir) para uma entidade específica.
+
 2. **Arquitetura RESTful**: A API segue os princípios da Transferência de Estado Representacional (REST), fornecendo uma interface uniforme para interação com recursos.
+
 3. **Validação**: os dados da solicitação são validados para garantir que atendam aos critérios exigidos antes do processamento.
 
 Sinta-se à vontade para explorar e modificar o código para saber mais sobre como construir APIs com NodeJS.
