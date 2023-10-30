@@ -32,7 +32,7 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Parâmetros de URL:** funcionario_id (integer) - ID do funcionário desejado.
 
-###
+--- 
 
 **Exemplo de Requisição:** ```GET /funcionarios/123```
 
@@ -40,13 +40,15 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Parâmetros de URL:** nome (string) - Noe do funcionário desejado.
 
-###
+---
 
 **Exemplo de Requisição:** ```GET /funcionarios/nome/Alessandra Neves```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/departamento/:nome
 
 **Parâmetros de URL:** nome (string) - Nome do departamento desejado.
+
+--- 
 
 **Exemplo de Requisição:** ```GET /funcionarios/departamento/marketing```
 
