@@ -57,7 +57,7 @@ CREATE TABLE funcionarios (
 	ocupacao_id INT NOT NULL,
 	salario DECIMAL(8, 2) NOT NULL,
 	gerente_id INT DEFAULT NULL,
-	departamento_id INT DEFAULT NULL,
+	departamento_id INT NOT NULL,
 	FOREIGN KEY (ocupacao_id) REFERENCES ocupacoes (ocupacao_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (departamento_id) REFERENCES departamentos (departamento_id) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (gerente_id) REFERENCES funcionarios (funcionario_id)
