@@ -121,7 +121,7 @@ TODOS os endpoints acima trarão o mesmo tipo de resposta:
   "regiao": "Americas"
 }
 
-// ... Outros funcionários do mesmo departamento (Quando necessário ou disponível)
+// ... Outros funcionários (quando necessário ou disponível).
 ```
 ## Características
 Esta API apresentará os seguintes recursos:
