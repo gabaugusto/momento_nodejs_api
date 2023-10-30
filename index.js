@@ -26,6 +26,13 @@ db.connect((err) => {
   console.log('Conexão ao MySQL estabelecida'); // Sucesso
 });
 
+//
+app.get('/', (req, res) => {
+  msg = `no endpoint suggested.`
+  console.error('no endpoint suggested.');
+  res.json(msg);
+});
+
 
 /////////////////////////////////////////////
 /* 
@@ -163,10 +170,10 @@ app.get('/funcionarios/departamento/:nome', (req, res) => {
 });
 
 // Rota para obter um registro pelo nome do cargo
-app.get('/funcionarios/cargo/:nome', (req, res) => {
-  const { nome } = req.params;
-  const query = `SELECT * FROM dados_funcionarios WHERE cargo LIKE "%${nome}%"`;
-  db.query(query, [nome], (err, results) => {
+app.get('/funcionarios/cargo/:cargo', (req, res) => {
+  const { cargo } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE cargo LIKE "%${cargo}%"`;
+  db.query(query, [cargo], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
       res.status(500).json({ error: 'Erro ao buscar registro' });
@@ -199,10 +206,10 @@ app.get('/funcionarios/escritorio/nome/:nome', (req, res) => {
 });
 
 // Rota para obter um registro pelo nome do endereco
-app.get('/funcionarios/escritorio/endereco/:nome', (req, res) => {
-  const { nome } = req.params;
-  const query = `SELECT * FROM dados_funcionarios WHERE endereco_escritorio LIKE "%${nome}%"`;
-  db.query(query, [nome], (err, results) => {
+app.get('/funcionarios/escritorio/endereco/:endereco', (req, res) => {
+  const { endereco } = req.params;
+  const query = `SELECT * FROM dados_funcionarios WHERE endereco_escritorio LIKE "%${endereco}%"`;
+  db.query(query, [endereco], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
       res.status(500).json({ error: 'Erro ao buscar registro' });
