@@ -20,9 +20,11 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Método HTTP:** GET
 
-**Endpoint / Parâmetros de URL:** /funcionarios
+**Endpoint / Parâmetros de URL:** ```/funcionarios```
 
 **Descrição**: Retorna uma lista de todos os funcionários disponíveis.
+
+###
 
 **Exemplo de Requisição:** ```GET /funcionarios```
 
@@ -30,11 +32,15 @@ Retorna informações sobre um funcionário com base no ID.
 
 **Parâmetros de URL:** funcionario_id (integer) - ID do funcionário desejado.
 
+###
+
 **Exemplo de Requisição:** ```GET /funcionarios/123```
 
 **Endpoint / Parâmetros de URL:** /funcionarios/nome/:nome
 
 **Parâmetros de URL:** nome (string) - Noe do funcionário desejado.
+
+###
 
 **Exemplo de Requisição:** ```GET /funcionarios/nome/Alessandra Neves```
 
