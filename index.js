@@ -154,7 +154,7 @@ app.get('/funcionarios/telefone/:phone', (req, res) => {
 // Rota para obter um registro pelo nome do departamento
 app.get('/funcionarios/departamento/:nome', (req, res) => {
   const { nome } = req.params;
-  const query = `SELECT * FROM dados_funcionarios WHERE departamento_nome LIKE "%${nome}%"`;
+  const query = `SELECT * FROM dados_funcionarios WHERE departamento LIKE "%${nome}%"`;
   db.query(query, [nome], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
@@ -190,7 +190,7 @@ app.get('/funcionarios/cargo/:cargo', (req, res) => {
 // Rota para obter um registro pelo nome do escritorio
 app.get('/funcionarios/escritorio/nome/:nome', (req, res) => {
   const { nome } = req.params;
-  const query = `SELECT * FROM dados_funcionarios WHERE escritorio_nome LIKE "%${nome}%"`;
+  const query = `SELECT * FROM dados_funcionarios WHERE escritorio LIKE "%${nome}%"`;
   db.query(query, [nome], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);
@@ -208,7 +208,7 @@ app.get('/funcionarios/escritorio/nome/:nome', (req, res) => {
 // Rota para obter um registro pelo nome do endereco
 app.get('/funcionarios/escritorio/endereco/:endereco', (req, res) => {
   const { endereco } = req.params;
-  const query = `SELECT * FROM dados_funcionarios WHERE endereco_escritorio LIKE "%${endereco}%"`;
+  const query = `SELECT * FROM dados_funcionarios WHERE endereco LIKE "%${endereco}%"`;
   db.query(query, [endereco], (err, results) => {
     if (err) {
       console.error('Erro ao buscar registro: ' + err);

@@ -236,10 +236,10 @@ SELECT
     ocupacoes.min_salario AS min_salario, 
     ocupacoes.max_salario AS max_salario, 
     departamentos.departamento_nome AS departamento, 
-    escritorios.escritorio_nome AS escritorio_nome, 
-    escritorios.endereco AS escritorio_endereco, 
+    escritorios.escritorio_nome AS escritorio, 
+    escritorios.endereco AS endereco, 
     paises.pais_nome AS pais, 
-    regioes.regiao_nome  AS regiao
+    regioes.regiao_nome AS regiao
 
  FROM funcionarios
 
@@ -256,7 +256,6 @@ INNER JOIN regioes
 
 -- Selecionando dados da VIEW
 SELECT * From dados_funcionarios;
-
 
 -- Criando a VIEW sobre dependentes 
 CREATE  OR REPLACE VIEW `dados_dependentes` AS
