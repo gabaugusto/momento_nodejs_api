@@ -7,13 +7,13 @@ USE momento;
 DROP TABLE IF EXISTS regioes;
 CREATE TABLE regioes (
 	regiao_id INT AUTO_INCREMENT PRIMARY KEY,
-	regiao_nome VARCHAR(25) DEFAULT NULL
+	regiao_nome VARCHAR(25) NOT NULL
 );
 
 DROP TABLE IF EXISTS paises;
 CREATE TABLE paises (
 	pais_id CHAR(2) PRIMARY KEY,
-	pais_nome VARCHAR(40) DEFAULT NULL,
+	pais_nome VARCHAR(48) NOT NULL,
 	regiao_id INT NOT NULL,
 	FOREIGN KEY (regiao_id) REFERENCES regioes (regiao_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -22,10 +22,10 @@ DROP TABLE IF EXISTS escritorios;
 CREATE TABLE escritorios (
 	escritorio_id INT AUTO_INCREMENT PRIMARY KEY,
 	escritorio_nome VARCHAR(48) DEFAULT NULL,
-	endereco VARCHAR(48) DEFAULT NULL,
+	endereco VARCHAR(48)  NOT NULL,
 	cep VARCHAR(12) DEFAULT NULL,
 	cidade VARCHAR(48) NOT NULL,
-	estado VARCHAR(24) DEFAULT NULL,
+	estado VARCHAR(24) NOT NULL,
 	pais_id CHAR(2) NOT NULL,
 	FOREIGN KEY (pais_id) REFERENCES paises (pais_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -49,10 +49,10 @@ CREATE TABLE ocupacoes (
 DROP TABLE IF EXISTS funcionarios; 
 CREATE TABLE funcionarios (
 	funcionario_id INT AUTO_INCREMENT PRIMARY KEY,
-	primeiro_nome VARCHAR(20) DEFAULT NULL,
-	sobrenome VARCHAR(25) NOT NULL,
-	email VARCHAR(100) NOT NULL,
-	telefone VARCHAR(20) DEFAULT NULL,
+	primeiro_nome VARCHAR(24) DEFAULT NULL,
+	sobrenome VARCHAR(24) NOT NULL,
+	email VARCHAR(128) NOT NULL,
+	telefone VARCHAR(24) DEFAULT NULL,
 	data_contratacao DATE NOT NULL,
 	ocupacao_id INT NOT NULL,
 	salario DECIMAL(8, 2) NOT NULL,
@@ -66,9 +66,9 @@ CREATE TABLE funcionarios (
 DROP TABLE IF EXISTS dependentes; 
 CREATE TABLE dependentes (
 	dependente_id INT AUTO_INCREMENT PRIMARY KEY,
-	primeiro_nome VARCHAR(50) NOT NULL,
-	sobrenome VARCHAR(50) NOT NULL,
-	parentesco VARCHAR(25) NOT NULL,
+	primeiro_nome VARCHAR(24) NOT NULL,
+	sobrenome VARCHAR(24) NOT NULL,
+	parentesco VARCHAR(24) NOT NULL,
 	funcionario_id INT NOT NULL,
 	FOREIGN KEY (funcionario_id) REFERENCES funcionarios (funcionario_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
