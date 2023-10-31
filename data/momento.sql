@@ -110,7 +110,7 @@ INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1500,'Stark Tower','2011 Interiors Blvd','99236','South San Francisco','California','US');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1700,'Wayne Offices','2004 Charade Rd','98199','Seattle','Washington','US');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1800,'Arkham Base','147 Spadina Ave','M5V 2L7','Toronto','Ontario','CA');
-INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2400,'','8204 Arthur St',NULL,'London',NULL,'UK');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2400,'','8204 Arthur St',NULL,'London','London','UK');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2500,'Umbrella Corp','Magdalen Centre, The Oxford Science Park','OX9 9ZB','Oxford','Oxford','UK');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2700,'Baxter Building','Schwanthalerstr. 7031','80925','Munich','Bavaria','DE');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (5400,'','Rua Tito, 54','05051-000','São Paulo','São Paulo','BR');
@@ -222,6 +222,7 @@ INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcion
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (28,'Woody','Russell','Filho(a)',145);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (29,'Alec','Partners','Filho(a)',146);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (30,'Sandra','Taylor','Filho(a)',176);
+
 
 -- Criando a VIEW sobre funcionários 
 CREATE  OR REPLACE VIEW `dados_funcionarios` AS
