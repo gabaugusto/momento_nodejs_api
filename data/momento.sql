@@ -78,7 +78,7 @@ CREATE TABLE dependentes (
 INSERT INTO regioes(regiao_id,regiao_nome) VALUES (1,'Europa');
 INSERT INTO regioes(regiao_id,regiao_nome) VALUES (2,'Americas');
 INSERT INTO regioes(regiao_id,regiao_nome) VALUES (3,'Asia');
-INSERT INTO regioes(regiao_id,regiao_nome) VALUES (4,'Sula da Asia ou Africa');
+INSERT INTO regioes(regiao_id,regiao_nome) VALUES (4,'Sul da Asia ou Africa');
 
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('AR','Argentina',2);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('AU','Australia',3);
