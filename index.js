@@ -11,9 +11,9 @@ const port = 3000; // Defina a porta que deseja executar o seu projeto.
 // Configuração do banco de dados MySQL
 const db = mysql.createConnection({
   host: 'localhost',  // Endereço do servidor MySQL
-  port: 3306,
+  port: 3307,
   user: 'root', // Seu nome de usuário MySQL
-  password: 'password', // Sua senha do MySQL
+  password: 'senac', // Sua senha do MySQL
   database: 'momento' // Nome do banco de dados
 });
 
