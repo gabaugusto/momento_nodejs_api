@@ -1,4 +1,3 @@
-
 -- Criando o Modelo Físico
 DROP DATABASE IF EXISTS momento;
 CREATE DATABASE IF NOT EXISTS momento;
@@ -95,25 +94,30 @@ INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('HK','HongKong',3);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('IL','Israel',4);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('IN','India',3);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('IT','Italy',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('KK','Krakoa',2);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('JP','Japan',3);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('KW','Kuwait',4);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('LE','Latveria',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('MI','Markovia',1);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('MX','Mexico',2);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('NG','Nigeria',4);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('NL','Netherlands',1);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('QU','Qurac',4);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('TY','Themyscira',1);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('SG','Singapore',3);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('UK','United Kingdom',1);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('US','United States of America',2);
-INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('ZM','Zambia',4);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('WA','Wakanda', 4);
+INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('ZM','Zambia', 4);
 INSERT INTO paises(pais_id,pais_nome,regiao_id) VALUES ('ZW','Zimbabwe',4);
 
-INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1400,'Sala Winter', '2014 Jabberwocky Rd','26192','Southlake','Texas','US');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1400,'Wayne Offices', '2014 Jabberwocky Rd','26192','Gotham','New York','US');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1500,'Stark Tower','2011 Interiors Blvd','99236','South San Francisco','California','US');
-INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1700,'Wayne Offices','2004 Charade Rd','98199','Seattle','Washington','US');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1700,'Sala Winter','2004 Charade Rd','98199','Seattle','Washington','US');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (1800,'Arkham Base','147 Spadina Ave','M5V 2L7','Toronto','Ontario','CA');
-INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2400,'','8204 Arthur St',NULL,'London','London','UK');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2400,"Shuri's Palace",'8204 Arthur St',NULL,'Jabari Village','Birnin Zana','WA');
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2500,'Umbrella Corp','Magdalen Centre, The Oxford Science Park','OX9 9ZB','Oxford','Oxford','UK');
-INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2700,'Baxter Building','Schwanthalerstr. 7031','80925','Munich','Bavaria','DE');
-INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (5400,'','Rua Tito, 54','05051-000','São Paulo','São Paulo','BR');
+INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado,pais_id) VALUES (2700,'Baxter Building','Schwanthalerstr. 7031','80925','London Below','Bavaria','DE');
 
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (1,'Admnistração',1700);
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (2,'Marketing',1800);
@@ -147,7 +151,7 @@ INSERT INTO ocupacoes(ocupacao_id,ocupacao_nome,min_salario,max_salario) VALUES 
 INSERT INTO ocupacoes(ocupacao_id,ocupacao_nome,min_salario,max_salario) VALUES (18,'Estoquista',2000.00,5000.00);
 INSERT INTO ocupacoes(ocupacao_id,ocupacao_nome,min_salario,max_salario) VALUES (19,'Gerente de Estoque',5500.00,8500.00);
 
-INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,telefone,data_contratacao,ocupacao_id,salario,gerente_id,departamento_id) VALUES (100,'Steven','King','steven.king@momento.org','515.123.4567','1987-06-17',4,24000.00,NULL,9);
+INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,telefone,data_contratacao,ocupacao_id,salario,gerente_id,departamento_id) VALUES (100,'Steven','Wayne','steven.wayne@momento.org','515.123.4567','1987-06-17',4,24000.00,NULL,9);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,telefone,data_contratacao,ocupacao_id,salario,gerente_id,departamento_id) VALUES (101,'Neena','Kochhar','neena.kochhar@momento.org','515.123.4568','1989-09-21',5,17000.00,100,9);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,telefone,data_contratacao,ocupacao_id,salario,gerente_id,departamento_id) VALUES (102,'Lex','De Haan','lex.de haan@momento.org','515.123.4569','1993-01-13',5,17000.00,100,9);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,telefone,data_contratacao,ocupacao_id,salario,gerente_id,departamento_id) VALUES (103,'Alexander','Hunold','alexander.hunold@momento.org','590.423.4567','1990-01-03',9,9000.00,102,6);
@@ -192,8 +196,8 @@ INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,telefone,d
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (1,'Penelope','Gietz','Filho(a)',206);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (2,'Nick','Higgins','Filho(a)',205);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (3,'Ed','Whalen','Filho(a)',200);
-INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (4,'Alice','King','Filho(a)',100);
-INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (31,'Jennifer','King','Cônjuge',100);
+INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (4,'Alice','Wayne','Filho(a)',100);
+INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (31,'Jennifer','Wayne','Cônjuge',100);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (5,'Johnny','Kochhar','Filho(a)',101);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (6,'Bette','De Haan','Filho(a)',102);
 INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcionario_id) VALUES (7,'Grace','Faviet','Filho(a)',109);
