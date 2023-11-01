@@ -6,71 +6,71 @@ USE momento;
 
 DROP TABLE IF EXISTS regioes;
 CREATE TABLE regioes (
-	regiao_id INT AUTO_INCREMENT PRIMARY KEY,
-	regiao_nome VARCHAR(25) NOT NULL
+  regiao_id INT AUTO_INCREMENT PRIMARY KEY,
+  regiao_nome VARCHAR(25) NOT NULL
 );
 
 DROP TABLE IF EXISTS paises;
 CREATE TABLE paises (
-	pais_id CHAR(2) PRIMARY KEY,
-	pais_nome VARCHAR(48) NOT NULL,
-	regiao_id INT NOT NULL,
-	FOREIGN KEY (regiao_id) REFERENCES regioes (regiao_id) ON DELETE CASCADE ON UPDATE CASCADE
+  pais_id CHAR(2) PRIMARY KEY,
+  pais_nome VARCHAR(48) NOT NULL,
+  regiao_id INT NOT NULL, 
+  FOREIGN KEY (regiao_id) REFERENCES regioes (regiao_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS escritorios;
 CREATE TABLE escritorios (
-	escritorio_id INT AUTO_INCREMENT PRIMARY KEY,
-	escritorio_nome VARCHAR(48) DEFAULT NULL,
-	endereco VARCHAR(48)  NOT NULL,
-	cep VARCHAR(12) DEFAULT NULL,
-	cidade VARCHAR(48) NOT NULL,
-	estado VARCHAR(24) NOT NULL,
-	pais_id CHAR(2) NOT NULL,
-	FOREIGN KEY (pais_id) REFERENCES paises (pais_id) ON DELETE CASCADE ON UPDATE CASCADE
+  escritorio_id INT AUTO_INCREMENT PRIMARY KEY,
+  escritorio_nome VARCHAR(48) DEFAULT NULL,
+  endereco VARCHAR(48) NOT NULL,
+  cep VARCHAR(12) DEFAULT NULL,
+  cidade VARCHAR(48) NOT NULL,
+  estado VARCHAR(24) NOT NULL,
+  pais_id CHAR(2) NOT NULL,
+  FOREIGN KEY (pais_id) REFERENCES paises (pais_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS departamentos;
 CREATE TABLE departamentos (
-	departamento_id INT AUTO_INCREMENT PRIMARY KEY,
-	departamento_nome VARCHAR(30) NOT NULL,
-	escritorio_id INT DEFAULT NULL,
-	FOREIGN KEY (escritorio_id) REFERENCES escritorios (escritorio_id) ON DELETE CASCADE ON UPDATE CASCADE
+  departamento_id INT AUTO_INCREMENT PRIMARY KEY,
+  departamento_nome VARCHAR(30) NOT NULL,
+  escritorio_id INT DEFAULT NULL,
+  FOREIGN KEY (escritorio_id) REFERENCES escritorios (escritorio_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 DROP TABLE IF EXISTS ocupacoes;
 CREATE TABLE ocupacoes (
-	ocupacao_id INT AUTO_INCREMENT PRIMARY KEY,
-	ocupacao_nome VARCHAR(35) NOT NULL,
-	min_salario DECIMAL(8, 2) DEFAULT NULL,
-	max_salario DECIMAL(8, 2) DEFAULT NULL
+  ocupacao_id INT AUTO_INCREMENT PRIMARY KEY,
+  ocupacao_nome VARCHAR(35) NOT NULL,
+  min_salario DECIMAL(8, 2) DEFAULT NULL,
+  max_salario DECIMAL(8, 2) DEFAULT NULL
 );
 
 DROP TABLE IF EXISTS funcionarios; 
 CREATE TABLE funcionarios (
-	funcionario_id INT AUTO_INCREMENT PRIMARY KEY,
-	primeiro_nome VARCHAR(24) DEFAULT NULL,
-	sobrenome VARCHAR(24) NOT NULL,
-	email VARCHAR(128) NOT NULL,
-	telefone VARCHAR(24) DEFAULT NULL,
-	data_contratacao DATE NOT NULL,
-	ocupacao_id INT NOT NULL,
-	salario DECIMAL(8, 2) NOT NULL,
-	gerente_id INT DEFAULT NULL,
-	departamento_id INT NOT NULL,
-	FOREIGN KEY (ocupacao_id) REFERENCES ocupacoes (ocupacao_id) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (departamento_id) REFERENCES departamentos (departamento_id) ON DELETE CASCADE ON UPDATE CASCADE,
-	FOREIGN KEY (gerente_id) REFERENCES funcionarios (funcionario_id)
+  funcionario_id INT AUTO_INCREMENT PRIMARY KEY,
+  primeiro_nome VARCHAR(24) DEFAULT NULL,
+  sobrenome VARCHAR(24) NOT NULL,
+  email VARCHAR(128) NOT NULL,
+  telefone VARCHAR(24) DEFAULT NULL,
+  data_contratacao DATE NOT NULL,
+  ocupacao_id INT NOT NULL,
+  salario DECIMAL(8, 2) NOT NULL,
+  gerente_id INT DEFAULT NULL,
+  departamento_id INT NOT NULL,
+  FOREIGN KEY (ocupacao_id) REFERENCES ocupacoes (ocupacao_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (departamento_id) REFERENCES departamentos (departamento_id) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY (gerente_id) REFERENCES funcionarios (funcionario_id)
 );
 
 DROP TABLE IF EXISTS dependentes; 
 CREATE TABLE dependentes (
-	dependente_id INT AUTO_INCREMENT PRIMARY KEY,
-	primeiro_nome VARCHAR(24) NOT NULL,
-	sobrenome VARCHAR(24) NOT NULL,
-	parentesco VARCHAR(24) NOT NULL,
-	funcionario_id INT NOT NULL,
-	FOREIGN KEY (funcionario_id) REFERENCES funcionarios (funcionario_id) ON DELETE CASCADE ON UPDATE CASCADE
+  dependente_id INT AUTO_INCREMENT PRIMARY KEY,
+  primeiro_nome VARCHAR(24) NOT NULL,
+  sobrenome VARCHAR(24) NOT NULL,
+  parentesco VARCHAR(24) NOT NULL,
+  funcionario_id INT NOT NULL,
+  FOREIGN KEY (funcionario_id) REFERENCES funcionarios (funcionario_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Inserindo Dados
@@ -225,51 +225,51 @@ INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,parentesco,funcion
 
 
 -- Criando a VIEW sobre funcionários 
-CREATE  OR REPLACE VIEW `dados_funcionarios` AS
+CREATE OR REPLACE VIEW `dados_funcionarios` AS
 SELECT 
-	funcionarios.funcionario_id AS funcionario_id, 
-    funcionarios.primeiro_nome AS primeiro_nome, 
-    funcionarios.sobrenome AS sobrenome, 
-    funcionarios.telefone AS telefone, 
-    funcionarios.data_contratacao AS data_contratacao, 
-    funcionarios.salario AS salario, 
-    ocupacoes.ocupacao_nome AS cargo, 
-    ocupacoes.min_salario AS min_salario, 
-    ocupacoes.max_salario AS max_salario, 
-    departamentos.departamento_nome AS departamento, 
-    escritorios.escritorio_nome AS escritorio, 
-    escritorios.endereco AS endereco, 
-    paises.pais_nome AS pais, 
-    regioes.regiao_nome AS regiao
+  funcionarios.funcionario_id AS funcionario_id, 
+  funcionarios.primeiro_nome AS primeiro_nome, 
+  funcionarios.sobrenome AS sobrenome, 
+  funcionarios.telefone AS telefone, 
+  funcionarios.data_contratacao AS data_contratacao, 
+  funcionarios.salario AS salario, 
+  ocupacoes.ocupacao_nome AS cargo, 
+  ocupacoes.min_salario AS min_salario, 
+  ocupacoes.max_salario AS max_salario, 
+  departamentos.departamento_nome AS departamento, 
+  escritorios.escritorio_nome AS escritorio, 
+  escritorios.endereco AS endereco, 
+  paises.pais_nome AS pais, 
+  regioes.regiao_nome AS regiao
 
  FROM funcionarios
 
 INNER JOIN ocupacoes 
-	ON funcionarios.ocupacao_id = ocupacoes.ocupacao_id
+  ON funcionarios.ocupacao_id = ocupacoes.ocupacao_id
 INNER JOIN departamentos 
-	ON funcionarios.departamento_id = departamentos.departamento_id
+  ON funcionarios.departamento_id = departamentos.departamento_id
 INNER JOIN escritorios 
-	ON departamentos.escritorio_id = escritorios.escritorio_id
+  ON departamentos.escritorio_id = escritorios.escritorio_id
 INNER JOIN paises 
-	ON escritorios.pais_id = paises.pais_id
+  ON escritorios.pais_id = paises.pais_id
 INNER JOIN regioes 
-	ON paises.regiao_id = regioes.regiao_id;
+  ON paises.regiao_id = regioes.regiao_id;
 
 -- Selecionando dados da VIEW
 SELECT * From dados_funcionarios;
 
 -- Criando a VIEW sobre dependentes 
-CREATE  OR REPLACE VIEW `dados_dependentes` AS
+CREATE OR REPLACE VIEW `dados_dependentes` AS
 SELECT 
-	dependentes.dependente_id AS dependente_id, 
-    dependentes.primeiro_nome AS primeiro_nome,
-	dependentes.sobrenome AS sobrenome,
-	dependentes.parentesco AS parentesco,
-	funcionarios.funcionario_id AS funcionario_id, 
-	funcionarios.primeiro_nome AS funcionario_primeiro_nome, 
-    funcionarios.sobrenome AS funcionario_sobrenome
+  dependentes.dependente_id AS dependente_id, 
+  dependentes.primeiro_nome AS primeiro_nome,
+  dependentes.sobrenome AS sobrenome,
+  dependentes.parentesco AS parentesco,
+  funcionarios.funcionario_id AS funcionario_id, 
+  funcionarios.primeiro_nome AS funcionario_primeiro_nome, 
+  funcionarios.sobrenome AS funcionario_sobrenome
 
  FROM dependentes
 
 INNER JOIN funcionarios 
-	ON dependentes.funcionario_id = funcionarios.funcionario_id;
+  ON dependentes.funcionario_id = funcionarios.funcionario_id;
