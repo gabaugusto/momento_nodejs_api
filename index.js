@@ -332,16 +332,6 @@ app.get('/dependentes/nome/:name', (req, res) => {
 });
 
 
-// Rota para enviar dados para a API
-app.post('/enviar-dados', (req, res) => {
-  const { nome_do_indicado, nome_filme } = req.body;
-
-  // Faça o que você deseja com os dados, por exemplo, salvar no banco de dados
-
-  // Você pode retornar os dados para a página HTML se desejar
-  res.json({ nome_do_indicado, nome_filme });
-});
-
 // Configurar o Express para servir arquivos estáticos
 app.use(express.static('public'));
 
