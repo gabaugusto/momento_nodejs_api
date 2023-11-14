@@ -317,7 +317,8 @@ INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Changed Passwor
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:18:00', 123);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:32:00', 200);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:31:24', 204);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:00', 193);
+INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:18', 207);
+INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:33', 193);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:47:01', 121);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:17', 103);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:19', 103);
@@ -332,7 +333,6 @@ INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-0
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 17:57:19', 203);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 18:32:29', 205);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 19:00:01', 108);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:00', 207);
 
 
 -- Creating VIEWs 
@@ -372,11 +372,9 @@ SELECT * From data_employees;
 -- Creating VIEW relatives 
 CREATE OR REPLACE VIEW `data_relatives` AS
 SELECT 
-  relatives.relative_id AS relative_id, 
   relatives.first_name AS first_name,
   relatives.last_name AS last_name,
   relatives.relationship AS relationship,
-  employees.employee_id AS employee_id, 
   employees.first_name AS employee_first_name, 
   employees.last_name AS employee_last_name
 
@@ -387,7 +385,11 @@ INNER JOIN employees
   
 -- Creating VIEW cost offices 
 CREATE OR REPLACE VIEW `cost_offices` AS
-SELECT supplies.supply_name, supplies.quantity, supplies.cost, offices.office_name 
+SELECT 
+	supplies.supply_name, 
+    supplies.quantity, 
+    supplies.cost, 
+    offices.office_name 
 	FROM supplies 
 INNER JOIN offices 
 	ON supplies.office_id = offices.office_id;
@@ -395,7 +397,11 @@ INNER JOIN offices
 
 -- Creating audit VIEW 
 CREATE OR REPLACE VIEW `audit_system` AS
-SELECT audit_log.log_action, audit_log.log_ts, employees.first_name, employees.last_name 
+SELECT 
+	audit_log.log_action as `action`, 
+    audit_log.log_ts as `timestamp`, 
+    employees.first_name, 
+    employees.last_name 
 	FROM audit_log 
 INNER JOIN  employees 
 	ON audit_log.employee_id = employees.employee_id;
