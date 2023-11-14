@@ -1,4 +1,4 @@
--- Criando o Modelo Físico
+
 DROP DATABASE IF EXISTS momento;
 CREATE DATABASE IF NOT EXISTS momento;
 USE momento;
@@ -82,13 +82,19 @@ CREATE TABLE relatives (
   FOREIGN KEY (employee_id) REFERENCES employees (employee_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+CREATE TABLE products (
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_name VARCHAR(125),
+    product_price VARCHAR(125)
+);
+
 CREATE TABLE sales (
     sale_id INT PRIMARY KEY,
-    product_name VARCHAR(125),
+    product_id INT,
     quantity INT,
-    price_per_unit DECIMAL(10, 2),
     sale_date DATE,
     employee_id INT,
+    FOREIGN KEY (product_id) REFERENCES products(product_id),
     FOREIGN KEY (employee_id) REFERENCES employees(employee_id)
 );
 
@@ -274,13 +280,37 @@ INSERT INTO employees(employee_id,first_name,last_name,email,emp_password,phone,
 INSERT INTO employees(employee_id,first_name,last_name,email,emp_password,phone,date_contract,position_id,salary,manager_id,departament_id) VALUES (206,'Susan','Storm','susan.storm@momento.org','@4@8@15@16','515.123.8181','1994-06-07',20,18300.00,205,12);
 INSERT INTO employees(employee_id,first_name,last_name,email,emp_password,phone,date_contract,position_id,salary,manager_id,departament_id) VALUES (207,'Lucius','Fox','lucius.fox@momento.org','@4@8@15@16','515.124.4569','1994-08-17',7,12000.00,101,10);
 
+INSERT INTO products (product_name, product_price) VALUES ("Superman's Cape", 100.13);
+INSERT INTO products (product_name, product_price) VALUES ("Fake Batarang", 239.29);
+INSERT INTO products (product_name, product_price) VALUES ("Web-Shooters", 237.19);
+INSERT INTO products (product_name, product_price) VALUES ("Ant Man's Helmet", 500.29);
+INSERT INTO products (product_name, product_price) VALUES ("Ultimate Nullifier", 320000.19);
+INSERT INTO products (product_name, product_price) VALUES ("Lasso of Lie", 64900.13);
+INSERT INTO products (product_name, product_price) VALUES ("Iron-man MK 5 Helmet", 50022.29);
+INSERT INTO products (product_name, product_price) VALUES ("Mace Windu Lightsaber", 1000.29);
+INSERT INTO products (product_name, product_price) VALUES ("Bolivar Trask's Sentinels", 500000.13 );
+INSERT INTO products (product_name, product_price) VALUES ("Unstable Molecules Uniform", 1000.29);
+INSERT INTO products (product_name, product_price) VALUES ("Lasso of Truth", 100000.29);
+INSERT INTO products (product_name, product_price) VALUES ("Real Batarang", 90000.29);
+
 -- Inserting data for Sales
-INSERT INTO sales VALUES (12508951, 'Superman\'s Cape', 10, 25.00, '2023-01-20', 145);
-INSERT INTO sales VALUES (23192902, 'Fake Batarang', 5, 105.50, '2023-01-21', 146);
-INSERT INTO sales VALUES (35864200, 'Web-Shooters', 8, 10.00, '2023-02-05', 176);
-INSERT INTO sales VALUES (46033321, 'Ant Man\'s Helmet ', 15, 25.00,  '2023-02-10', 177);
-INSERT INTO sales VALUES (58923150, 'Ultimate Nullifier', 3, 15.50,  '2023-02-15', 178);
-INSERT INTO sales VALUES (131929021, 'Lasso of Truth', 10, 95.00, '2023-01-20', 146);
+INSERT INTO sales VALUES (23192902, 5, 17, '2023-01-13', 146);
+INSERT INTO sales VALUES (11508951, 1, 10, '2023-02-19', 145);
+INSERT INTO sales VALUES (29290213, 4, 55, '2023-03-21', 145);
+INSERT INTO sales VALUES (35864200, 3, 8, '2023-05-05', 176);
+INSERT INTO sales VALUES (460333211, 6, 15, '2023-07-10', 177);
+INSERT INTO sales VALUES (58923150, 8, 1, '2023-01-15', 178);
+INSERT INTO sales VALUES (19290129, 9, 3, '2023-02-20', 178);
+INSERT INTO sales VALUES (12508951, 10, 13, '2023-05-20', 145);
+INSERT INTO sales VALUES (12519951, 10, 10, '2023-07-20', 145);
+INSERT INTO sales VALUES (23191302, 11, 5, '2023-08-21', 146);
+INSERT INTO sales VALUES (89864008, 12, 3, '2023-03-05', 176);
+INSERT INTO sales VALUES (46073321, 1, 167, '2023-12-10', 176);
+INSERT INTO sales VALUES (29923150, 2, 3, '2023-11-30', 178);
+INSERT INTO sales VALUES (14131021, 3, 10, '2023-01-20', 177);
+INSERT INTO sales VALUES (23912902, 4, 29, '2023-01-22', 146);
+INSERT INTO sales VALUES (23197502, 5, 1, '2023-06-18', 176);
+INSERT INTO sales VALUES (23112902, 6, 13, '2023-10-14', 146);
 
 -- Data for the table relatives 
 INSERT INTO relatives(relative_id,first_name,last_name,relationship,employee_id) VALUES (1,'Penelope','Wayne','Child',200);
@@ -321,36 +351,36 @@ INSERT INTO relatives(relative_id,first_name,last_name,relationship,employee_id)
 INSERT INTO relatives(relative_id,first_name,last_name,relationship,employee_id) VALUES (36,'Jennifer','Wayne','Partner',100);
 INSERT INTO relatives(relative_id,first_name,last_name,relationship,employee_id) VALUES (37,'Zachary','Zatara','Father',179);
 
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:00:01', 100);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:22:00', 107);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 08:25:33', 106);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:41:17', 110);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:45:02', 111);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 08:47:22', 177);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Changed Password', '2023-01-15 08:49:22', 177);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:51:24', 177);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:01:00', 101);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:05:00', 114);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Changed Password', '2023-01-15 09:08:22', 206);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:18:00', 123);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:32:00', 200);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:31:24', 204);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:18', 207);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:33', 193);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:47:01', 121);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:17', 103);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:19', 103);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:19', 192);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:52:00', 118);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 10:32:00', 119);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Changed Password', '2023-01-15 11:08:22', 120);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 11:45:29', 122);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 12:00:29', 109);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 13:13:21', 207);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 14:19:13', 109);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 17:57:19', 203);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 18:32:29', 205);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 19:00:01', 108);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:00:01', 100);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:22:00', 107);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 08:25:33', 106);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:41:17', 110);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:45:02', 111);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 08:47:22', 177);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Changed Password', '2023-01-15 08:49:22', 177);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:51:24', 177);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:01:00', 101);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:05:00', 114);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Changed Password', '2023-01-15 09:08:22', 206);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:18:00', 123);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:32:00', 200);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:31:24', 204);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:18', 207);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:33', 193);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:47:01', 121);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:17', 103);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:19', 103);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:19', 192);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:52:00', 118);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 10:32:00', 119);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Changed Password', '2023-01-15 11:08:22', 120);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 11:45:29', 122);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 12:00:29', 109);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 13:13:21', 207);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 14:19:13', 109);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 17:57:19', 203);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 18:32:29', 205);
+INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 19:00:01', 108);
 
 -- Creating VIEWs 
 CREATE OR REPLACE VIEW `data_employees` AS
@@ -383,9 +413,6 @@ INNER JOIN countries
 INNER JOIN regions 
   ON countries.region_id = regions.region_id;
 
--- Selecting data from VIEW
-SELECT * From data_employees;
-
 -- Creating VIEW relatives 
 CREATE OR REPLACE VIEW `data_relatives` AS
 SELECT 
@@ -394,16 +421,14 @@ SELECT
   relatives.relationship AS relationship,
   employees.first_name AS employee_first_name, 
   employees.last_name AS employee_last_name
-
  FROM relatives
-
 INNER JOIN employees 
   ON relatives.employee_id = employees.employee_id;
   
 -- Creating VIEW cost offices 
 CREATE OR REPLACE VIEW `cost_offices` AS
 SELECT 
-	supplies.supply_name, 
+    supplies.supply_name, 
     supplies.quantity, 
     supplies.cost, 
     offices.office_name 
@@ -411,25 +436,33 @@ SELECT
 INNER JOIN offices 
 	ON supplies.office_id = offices.office_id;
     
-
 -- Creating audit VIEW 
 CREATE OR REPLACE VIEW `audit_system` AS
 SELECT 
-	audit_log.log_action as `action`, 
+	  audit_log.log_action as `action`, 
     audit_log.log_ts as `timestamp`, 
     employees.first_name, 
     employees.last_name 
 	FROM audit_log 
 INNER JOIN  employees 
 	ON audit_log.employee_id = employees.employee_id;
-    
-    
-    -- Creating sales_report VIEW 
+        
+-- Creating sales_report VIEW 
 CREATE OR REPLACE VIEW `sales_report` AS
 SELECT 
-	sales.*, 
+    sales.sale_id as 'ticket', 
+    sales.quantity as 'quantity', 
+    products.product_name as 'product',
+    products.product_price as 'price',
+    sales.sale_date as 'date', 
     employees.first_name,
     employees.last_name
+
 	FROM sales 
 INNER JOIN  employees 
-	ON sales.employee_id = employees.employee_id;
+	ON sales.employee_id = employees.employee_id
+INNER JOIN  products 
+	ON sales.product_id = products.product_id;  
+
+-- Selecting data from VIEW
+SELECT * From data_employees;
