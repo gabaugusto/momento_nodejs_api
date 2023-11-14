@@ -313,10 +313,10 @@ INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Changed Passwor
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 08:51:24', 177);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:01:00', 101);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:05:00', 114);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Changed Password', '2023-01-15 09:08:22', 144);
+INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Changed Password', '2023-01-15 09:08:22', 206);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:18:00', 123);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:32:00', 200);
-INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:31:24', 144);
+INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:31:24', 204);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:00', 193);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Login', '2023-01-15 09:47:01', 121);
 INSERT INTO audit_log (log_action, log_ts, employee_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:17', 103);
@@ -387,7 +387,7 @@ INNER JOIN employees
   
 -- Creating VIEW cost offices 
 CREATE OR REPLACE VIEW `cost_offices` AS
-SELECT supplies.supply_name, supplies.quantity, supplies.cost, supplies.office_name 
+SELECT supplies.supply_name, supplies.quantity, supplies.cost, offices.office_name 
 	FROM supplies 
 INNER JOIN offices 
 	ON supplies.office_id = offices.office_id;
