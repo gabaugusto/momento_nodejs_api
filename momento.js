@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
 employees
 ///////////////////////////////////////////*/
 app.get('/employees', (req, res) => {
-  const query = `SELECT * FROM data_employees ORDER BY first_name `;
+  const query = `SELECT * FROM data_employees `;
   db.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching records: ' + err);
@@ -309,6 +309,34 @@ app.get('/relatives/name/:name', (req, res) => {
     } else {
       res.json(results);
     }
+  });
+});
+
+/////////////////////////////////////////////
+/* 
+offices
+///////////////////////////////////////////*/
+app.get('/offices', (req, res) => {
+  const query = `SELECT * FROM offices`;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching records: ' + err);
+      res.status(500).json({ error: 'Error fetching records' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+app.get('/offices/costs', (req, res) => {
+  const query = `SELECT SUM(cost) as costs, office_name FROM cost_offices GROUP BY office_name;`;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching records: ' + err);
+      res.status(500).json({ error: 'Error fetching records' });
+      return;
+    }
+    res.json(results);
   });
 });
 

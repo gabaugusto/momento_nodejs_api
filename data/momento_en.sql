@@ -389,6 +389,7 @@ SELECT
   employees.employee_id AS employee_id, 
   CONCAT(employees.first_name, ' ', employees.last_name) AS 'employee_name',
   employees.phone AS phone, 
+  employees.email AS email, 
   employees.date_contract AS date_contract, 
   employees.salary AS salary, 
   positions.position_name AS position, 
