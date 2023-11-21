@@ -56,13 +56,13 @@ app.get('/employees', (req, res) => {
 // Rota para obter employees com paginação
 app.get('/employees-pag', (req, res) => {
   let { page, limit } = req.query;
-  
+
   page = parseInt(page);
   limit = parseInt(limit);
 
   let start = (page - 1) * limit; // Cálculo do índice de início
   // Cálculo do índice de término. 
-  
+
   // Execute a consulta SQL com a cláusula LIMIT
   const query = `SELECT * FROM data_employees ORDER BY employee_id DESC LIMIT ${start},${limit}`;
   //console.log(`LIMITE ${limit}(${typeof(limit)}) - Page: ${page}(${typeof(page)}) - Start + ${start}(${typeof(start)})`)
@@ -72,7 +72,7 @@ app.get('/employees-pag', (req, res) => {
       res.status(500).json({ error: 'Erro ao buscar funcionários' });
       return;
     }
-    
+
     res.json(results);
   });
 });
@@ -96,7 +96,7 @@ app.get('/employees/id/:id', (req, res) => {
 
 app.get('/employees/name/:name', (req, res) => {
   const { name } = req.params;
-  const query = `SELECT * FROM data_employees WHERE first_name LIKE "%${name}%" OR last_name LIKE "%${name}%"`;
+  const query = `SELECT * FROM data_employees WHERE employee_name LIKE "%${name}%"`;
   db.query(query, [name], (err, results) => {
     if (err) {
       console.error('Error fetching record: ' + err);
@@ -286,7 +286,7 @@ app.get('/employees/salary_gt/:value', (req, res) => {
 relatives
 ///////////////////////////////////////////*/
 app.get('/relatives', (req, res) => {
-  const query = `SELECT * FROM data_relatives ORDER BY first_name `;
+  const query = `SELECT * FROM data_relatives ORDER BY relative_name `;
   db.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching records: ' + err);
@@ -300,7 +300,7 @@ app.get('/relatives', (req, res) => {
 
 app.get('/relatives/name/:name', (req, res) => {
   const { name } = req.params;
-  const query = `SELECT * FROM dados_relatives WHERE first_name LIKE "%${name}%" OR last_name LIKE "%${name}%"`;
+  const query = `SELECT * FROM data_relatives WHERE relative_name LIKE "%${name}%"`;
   db.query(query, [name], (err, results) => {
     if (err) {
       console.error('Error fetching record: ' + err);
@@ -356,7 +356,7 @@ app.get('/sales', (req, res) => {
 
 app.get('/sales/employee/name/:name', (req, res) => {
   const { name } = req.params;
-  const query = `SELECT * FROM sales_report WHERE first_name LIKE "%${name}%" OR last_name LIKE "%${name}%"`;
+  const query = `SELECT * FROM sales_report WHERE employee_name LIKE "%${name}%"`;
   db.query(query, [name], (err, results) => {
     if (err) {
       console.error('Error fetching records: ' + err);
@@ -431,6 +431,25 @@ app.get('/sales_by_product', (req, res) => {
   });
 });
 
+
+app.get(`/sales/employee/performance`, (req, res) => {
+  const query = `SELECT 
+  CONCAT(employees.first_name, ' ', employees.last_name) AS employee_name,
+  SUM(sales.quantity * products.product_price) AS total_sales
+    FROM sales
+  INNER JOIN employees ON sales.employee_id = employees.employee_id
+  INNER JOIN products ON sales.product_id = products.product_id
+  GROUP BY employees.employee_id;
+`;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching records: ' + err);
+      res.status(500).json({ error: 'Error fetching records' });
+      return;
+    }
+    res.json(results);
+  });
+});
 
 
 

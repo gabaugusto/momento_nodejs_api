@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Performance Comparison</title>
+  <!-- Include Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <canvas id="employeePerformanceChart" width="800" height="400"></canvas>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fetch data from the API endpoint
+      fetch('/sales/employee/performance')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(dataArray => {
+          if (!Array.isArray(dataArray) || dataArray.length === 0) {
+            throw new Error('Invalid data format or empty response');
+          }
+
+          const data = dataArray[0]; // Extracting the first item from the array
+
+          // Extracting employee names and total sales from the fetched data
+          const employees = dataArray.map(item => item.employee_name);
+          const totalSales = dataArray.map(item => item.total_sales);
+
+          // Chart.js setup for employee performance comparison
+          const ctx = document.getElementById('employeePerformanceChart').getContext('2d');
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: employees,
+              datasets: [{
+                label: 'Employee Performance Comparison',
+                data: totalSales,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+              }]
+            },
+            options: {
+              indexAxis: 'y',
+              scales: {
+                x: {
+                  beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: 'Total Sales'
+                  }
+                },
+                y: {
+                  title: {
+                    display: true,
+                    text: 'Employees'
+                  }
+                }
+              }
+            }
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching or processing data:', error);
+        });
+    });
+  </script>
+</body>
+</html>

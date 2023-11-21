@@ -280,10 +280,10 @@ INSERT INTO employees(employee_id,first_name,last_name,email,emp_password,phone,
 INSERT INTO employees(employee_id,first_name,last_name,email,emp_password,phone,date_contract,position_id,salary,manager_id,departament_id) VALUES (206,'Susan','Storm','susan.storm@momento.org','@4@8@15@16','515.123.8181','1994-06-07',20,18300.00,205,12);
 INSERT INTO employees(employee_id,first_name,last_name,email,emp_password,phone,date_contract,position_id,salary,manager_id,departament_id) VALUES (207,'Lucius','Fox','lucius.fox@momento.org','@4@8@15@16','515.124.4569','1994-08-17',7,12000.00,101,10);
 
-INSERT INTO products (product_name, product_price) VALUES ("Superman's Cape", 100.13);
+INSERT INTO products (product_name, product_price) VALUES ("Superman's Cape", 300.13);
 INSERT INTO products (product_name, product_price) VALUES ("Fake Batarang", 239.29);
 INSERT INTO products (product_name, product_price) VALUES ("Web-Shooters", 237.19);
-INSERT INTO products (product_name, product_price) VALUES ("Ant Man's Helmet", 500.29);
+INSERT INTO products (product_name, product_price) VALUES ("Ant Man's Helmet", 289.29);
 INSERT INTO products (product_name, product_price) VALUES ("Ultimate Nullifier", 750.19);
 INSERT INTO products (product_name, product_price) VALUES ("Lasso of Lie", 649.13);
 INSERT INTO products (product_name, product_price) VALUES ("Iron-man MK 5 Helmet", 322.29);
@@ -387,8 +387,7 @@ INSERT INTO audit_log(log_action, log_ts, employee_id) VALUES ('Login', '2023-01
 CREATE OR REPLACE VIEW `data_employees` AS
 SELECT 
   employees.employee_id AS employee_id, 
-  employees.first_name AS first_name, 
-  employees.last_name AS last_name, 
+  CONCAT(employees.first_name, ' ', employees.last_name) AS 'employee_name',
   employees.phone AS phone, 
   employees.date_contract AS date_contract, 
   employees.salary AS salary, 
@@ -417,11 +416,9 @@ INNER JOIN regions
 -- Creating VIEW relatives 
 CREATE OR REPLACE VIEW `data_relatives` AS
 SELECT 
-  relatives.first_name AS first_name,
-  relatives.last_name AS last_name,
+  CONCAT(relatives.first_name, ' ', relatives.last_name) AS 'relative_name',
   relatives.relationship AS relationship,
-  employees.first_name AS employee_first_name, 
-  employees.last_name AS employee_last_name
+  CONCAT(employees.first_name, ' ', employees.last_name) AS 'employee_name'
  FROM relatives
 INNER JOIN employees 
   ON relatives.employee_id = employees.employee_id;
@@ -440,7 +437,7 @@ INNER JOIN offices
 -- Creating audit VIEW 
 CREATE OR REPLACE VIEW `audit_system` AS
 SELECT 
-	  audit_log.log_action as `action`, 
+    audit_log.log_action as `action`, 
     audit_log.log_ts as `timestamp`, 
     employees.first_name, 
     employees.last_name 
@@ -457,9 +454,8 @@ SELECT
     products.product_id as 'product_id',
     products.product_price as 'price',
     sales.sale_date, 
-	employees.employee_id, 
-    employees.first_name,
-    employees.last_name
+    employees.employee_id, 
+    CONCAT(employees.first_name, ' ', employees.last_name) AS 'employee_name'
 	FROM sales 
 INNER JOIN  employees 
 	ON sales.employee_id = employees.employee_id
