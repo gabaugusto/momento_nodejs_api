@@ -474,7 +474,7 @@ app.get('/audit', (req, res) => {
 
 app.get('/audit/name/:name', (req, res) => {
   const { name } = req.params;
-  const query = `SELECT * FROM audit_system WHERE first_name LIKE "%${name}%" OR last_name LIKE "%${name}%" ORDER BY timestamp`;
+  const query = `SELECT * FROM audit_system WHERE employee_name LIKE "%${name}%" ORDER BY timestamp`;
   db.query(query, [name], (err, results) => {
     if (err) {
       console.error('Error fetching records: ' + err);

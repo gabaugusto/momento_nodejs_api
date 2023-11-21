@@ -439,8 +439,7 @@ CREATE OR REPLACE VIEW `audit_system` AS
 SELECT 
     audit_log.log_action as `action`, 
     audit_log.log_ts as `timestamp`, 
-    employees.first_name, 
-    employees.last_name 
+    CONCAT(employees.first_name, ' ', employees.last_name) AS 'employee_name'
 	FROM audit_log 
 INNER JOIN  employees 
 	ON audit_log.employee_id = employees.employee_id;
