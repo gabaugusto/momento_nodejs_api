@@ -284,33 +284,35 @@ INSERT INTO products (product_name, product_price) VALUES ("Superman's Cape", 10
 INSERT INTO products (product_name, product_price) VALUES ("Fake Batarang", 239.29);
 INSERT INTO products (product_name, product_price) VALUES ("Web-Shooters", 237.19);
 INSERT INTO products (product_name, product_price) VALUES ("Ant Man's Helmet", 500.29);
-INSERT INTO products (product_name, product_price) VALUES ("Ultimate Nullifier", 320000.19);
-INSERT INTO products (product_name, product_price) VALUES ("Lasso of Lie", 64900.13);
-INSERT INTO products (product_name, product_price) VALUES ("Iron-man MK 5 Helmet", 50022.29);
-INSERT INTO products (product_name, product_price) VALUES ("Mace Windu Lightsaber", 1000.29);
-INSERT INTO products (product_name, product_price) VALUES ("Bolivar Trask's Sentinels", 500000.13 );
-INSERT INTO products (product_name, product_price) VALUES ("Unstable Molecules Uniform", 1000.29);
-INSERT INTO products (product_name, product_price) VALUES ("Lasso of Truth", 100000.29);
-INSERT INTO products (product_name, product_price) VALUES ("Real Batarang", 90000.29);
+INSERT INTO products (product_name, product_price) VALUES ("Ultimate Nullifier", 750.19);
+INSERT INTO products (product_name, product_price) VALUES ("Lasso of Lie", 649.13);
+INSERT INTO products (product_name, product_price) VALUES ("Iron-man MK 5 Helmet", 322.29);
+INSERT INTO products (product_name, product_price) VALUES ("Mace Windu Lightsaber", 990.29);
+INSERT INTO products (product_name, product_price) VALUES ("Bolivar Trask's Sentinels", 150.13 );
+INSERT INTO products (product_name, product_price) VALUES ("Unstable Molecules Uniform", 158.29);
+INSERT INTO products (product_name, product_price) VALUES ("Lasso of Truth", 100.29);
+INSERT INTO products (product_name, product_price) VALUES ("Real Batarang", 900.29);
 
 -- Inserting data for Sales
-INSERT INTO sales VALUES (23192902, 5, 17, '2023-01-13', 146);
-INSERT INTO sales VALUES (11508951, 1, 10, '2023-02-19', 145);
-INSERT INTO sales VALUES (29290213, 4, 55, '2023-03-21', 145);
-INSERT INTO sales VALUES (35864200, 3, 8, '2023-05-05', 176);
-INSERT INTO sales VALUES (460333211, 6, 15, '2023-07-10', 177);
-INSERT INTO sales VALUES (58923150, 8, 1, '2023-01-15', 178);
-INSERT INTO sales VALUES (19290129, 9, 3, '2023-02-20', 178);
-INSERT INTO sales VALUES (12508951, 10, 13, '2023-05-20', 145);
+INSERT INTO sales VALUES (35864200, 3, 19, '2023-06-05', 176);
+INSERT INTO sales VALUES (460333211, 6, 15, '2023-06-10', 177);
+INSERT INTO sales VALUES (23192902, 5, 17, '2023-06-13', 146);
+INSERT INTO sales VALUES (23112902, 6, 13, '2023-06-14', 146);
+INSERT INTO sales VALUES (58923150, 8, 22, '2023-06-15', 178);
+INSERT INTO sales VALUES (11508951, 1, 10, '2023-06-19', 145);
+INSERT INTO sales VALUES (19290129, 9, 14, '2023-06-20', 178);
+INSERT INTO sales VALUES (29290213, 4, 55, '2023-06-21', 145);
+INSERT INTO sales VALUES (12508951, 10, 13, '2023-06-29', 145);
+
+INSERT INTO sales VALUES (89864008, 12, 3, '2023-07-05', 176);
+INSERT INTO sales VALUES (46073321, 1, 167, '2023-07-10', 176);
+INSERT INTO sales VALUES (14131021, 3, 10, '2023-07-13', 177);
+INSERT INTO sales VALUES (23197502, 5, 19, '2023-07-18', 176);
 INSERT INTO sales VALUES (12519951, 10, 10, '2023-07-20', 145);
-INSERT INTO sales VALUES (23191302, 11, 5, '2023-08-21', 146);
-INSERT INTO sales VALUES (89864008, 12, 3, '2023-03-05', 176);
-INSERT INTO sales VALUES (46073321, 1, 167, '2023-12-10', 176);
-INSERT INTO sales VALUES (29923150, 2, 3, '2023-11-30', 178);
-INSERT INTO sales VALUES (14131021, 3, 10, '2023-01-20', 177);
-INSERT INTO sales VALUES (23912902, 4, 29, '2023-01-22', 146);
-INSERT INTO sales VALUES (23197502, 5, 1, '2023-06-18', 176);
-INSERT INTO sales VALUES (23112902, 6, 13, '2023-10-14', 146);
+INSERT INTO sales VALUES (23912902, 4, 29, '2023-07-19', 146);
+INSERT INTO sales VALUES (23191302, 11, 8, '2023-07-21', 146);
+INSERT INTO sales VALUES (29923150, 2, 14, '2023-07-29', 178);
+
 
 -- Data for the table relatives 
 INSERT INTO relatives(relative_id,first_name,last_name,relationship,employee_id) VALUES (1,'Penelope','Wayne','Child',200);
@@ -453,11 +455,12 @@ SELECT
     sales.sale_id as 'ticket', 
     sales.quantity as 'quantity', 
     products.product_name as 'product',
+    products.product_id as 'product_id',
     products.product_price as 'price',
-    sales.sale_date as 'date', 
+    sales.sale_date, 
+	employees.employee_id, 
     employees.first_name,
     employees.last_name
-
 	FROM sales 
 INNER JOIN  employees 
 	ON sales.employee_id = employees.employee_id
