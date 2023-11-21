@@ -354,7 +354,7 @@ app.get('/sales', (req, res) => {
   });
 });
 
-app.get('/sales/name/:name', (req, res) => {
+app.get('/sales/employee/name/:name', (req, res) => {
   const { name } = req.params;
   const query = `SELECT * FROM sales_report WHERE first_name LIKE "%${name}%" OR last_name LIKE "%${name}%"`;
   db.query(query, [name], (err, results) => {
@@ -366,6 +366,72 @@ app.get('/sales/name/:name', (req, res) => {
     res.json(results);
   });
 });
+
+app.get('/sales/employee/id/:id', (req, res) => {
+  const { id } = req.params;
+  const query = `SELECT * FROM sales_report WHERE employee_id = ${id}`;
+  db.query(query, [id], (err, results) => {
+    if (err) {
+      console.error('Error fetching records: ' + err);
+      res.status(500).json({ error: 'Error fetching records' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+app.get('/sales/product/name/:name', (req, res) => {
+  const { name } = req.params;
+  const query = `SELECT * FROM sales_report WHERE product_name LIKE "%${name}%"`;
+  db.query(query, [name], (err, results) => {
+    if (err) {
+      console.error('Error fetching records: ' + err);
+      res.status(500).json({ error: 'Error fetching records' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+app.get('/sales/product/id/:id', (req, res) => {
+  const { id } = req.params;
+  const query = `SELECT * FROM sales_report WHERE product_id = ${id}`;
+  db.query(query, [id], (err, results) => {
+    if (err) {
+      console.error('Error fetching records: ' + err);
+      res.status(500).json({ error: 'Error fetching records' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+
+app.get('/sales_over_time', (req, res) => {
+  const query = `SELECT sale_date AS date, SUM(quantity * price) AS total_sales FROM sales_report GROUP BY sale_date ORDER BY sale_date;`;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching records: ' + err);
+      res.status(500).json({ error: 'Error fetching records' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+app.get('/sales_by_product', (req, res) => {
+  const query = `SELECT products.product_name AS product, SUM(sales.quantity) AS total_quantity_sold, SUM((sales.quantity * products.product_price)/100) AS total_value_sold FROM sales INNER JOIN products ON sales.product_id = products.product_id GROUP BY products.product_name;`;
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching records: ' + err);
+      res.status(500).json({ error: 'Error fetching records' });
+      return;
+    }
+    res.json(results);
+  });
+});
+
+
 
 
 app.get('/audit', (req, res) => {
