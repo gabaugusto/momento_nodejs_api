@@ -38,9 +38,6 @@ app.get('/', (req, res) => {
 /* 
 employees
 ///////////////////////////////////////////*/
-
-// Definir os endpoints da API
-// Rota para obter todos os registros
 app.get('/employees', (req, res) => {
   const query = `SELECT * FROM data_employees ORDER BY first_name `;
   db.query(query, (err, results) => {
@@ -53,7 +50,7 @@ app.get('/employees', (req, res) => {
   });
 });
 
-// Rota para obter employees com paginação
+// Pagination
 app.get('/employees-pag', (req, res) => {
   let { page, limit } = req.query;
 
@@ -315,7 +312,11 @@ app.get('/relatives/name/:name', (req, res) => {
   });
 });
 
-// Rota para obter todos os registros
+/////////////////////////////////////////////
+/* 
+supplies
+///////////////////////////////////////////*/
+
 app.get('/supplies', (req, res) => {
   const query = `SELECT * FROM cost_offices `;
   db.query(query, (err, results) => {
@@ -328,7 +329,7 @@ app.get('/supplies', (req, res) => {
   });
 });
 
-// Rota para obter todos os registros
+
 app.get('/supplies/cost', (req, res) => {
   const query = `SELECT SUM(cost) as cost, office_name FROM cost_offices GROUP BY office_name`;
   db.query(query, (err, results) => {
@@ -341,7 +342,10 @@ app.get('/supplies/cost', (req, res) => {
   });
 });
 
-// Rota para obter todos os registros
+/////////////////////////////////////////////
+/* 
+Sales
+///////////////////////////////////////////*/
 app.get('/sales', (req, res) => {
   const query = `SELECT * FROM sales_report`;
   db.query(query, (err, results) => {
@@ -452,7 +456,10 @@ app.get(`/sales/employee/performance`, (req, res) => {
 });
 
 
-
+/////////////////////////////////////////////
+/* 
+Audit
+///////////////////////////////////////////*/
 app.get('/audit', (req, res) => {
   const query = `SELECT * FROM audit_system ORDER BY timestamp`;
   db.query(query, (err, results) => {
@@ -479,10 +486,10 @@ app.get('/audit/name/:name', (req, res) => {
 });
 
 
-// Configurar o Express para servir arquivos estáticos
+// Setuo Express to show Static Files
 app.use(express.static('public'));
 
-// Finalmente, iniciamos o servidor e aplicação estará disponível. 
+// Init the application
 app.listen(port, () => {
   console.log(`Servidor Express rodando na porta ${port}. 
    Acesso através do endereço de http://localhost:${port}/`
