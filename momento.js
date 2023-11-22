@@ -440,7 +440,7 @@ app.get('/sales/product/id/:id', (req, res) => {
 
 
 app.get('/sales_over_time', (req, res) => {
-  const query = `SELECT sale_date AS date, SUM(quantity * price) AS total_sales FROM sales_report GROUP BY sale_date ORDER BY sale_date;`;
+  const query = `SELECT sale_date AS date, SUM(quantity_sold * unit_price) AS total_sales FROM sales_report GROUP BY sale_date ORDER BY sale_date;`;
   db.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching records: ' + err);
@@ -465,14 +465,7 @@ app.get('/sales_by_product', (req, res) => {
 
 
 app.get(`/sales/employee/performance`, (req, res) => {
-  const query = `SELECT 
-  CONCAT(employees.first_name, ' ', employees.last_name) AS employee_name,
-  SUM(sales.quantity * products.product_price) AS total_sales
-    FROM sales
-  INNER JOIN employees ON sales.employee_id = employees.employee_id
-  INNER JOIN products ON sales.product_id = products.product_id
-  GROUP BY employees.employee_id;
-`;
+  const query = `SELECT * FROM sales_employee_performance;`;
   db.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching records: ' + err);

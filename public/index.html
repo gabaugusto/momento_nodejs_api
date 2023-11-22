@@ -73,7 +73,7 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
-                        
+
 
 
 
@@ -102,7 +102,8 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="`login.html" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="`login.html" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -248,8 +249,7 @@
                             </div>
                         </div>
 
-                        
-                        <!-- Sales By Employee -->
+                        <!-- Employee Performance-->
                         <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
@@ -312,8 +312,41 @@
                         </div>
 
 
-                    </div>
 
+                    </div>
+                    <div class="row">                    
+
+                        <!-- Offices' Costs-->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Offices' Costs</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2">
+                                        <canvas id="officesCosts"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -376,8 +409,9 @@
     <script src="vendor/chart.js/Chart.min.js"></script>
 
     <!-- Scripts Charts -->
-    <script src="js/sot.js"></script> <!-- Sales over time -->
-    <script src="js/sbp.js"></script> <!-- Sales by product -->
+    <script src="js/ofc.js"></script> <!-- Costs by Offices -->
+    <script src="js/sot.js"></script> <!-- Sales Over Time -->
+    <script src="js/sbp.js"></script> <!-- Sales by Product -->
     <script src="js/sbe.js"></script> <!-- Sales by Employee -->
     <script src="js/demo/chart-pie-demo.js"></script>
 

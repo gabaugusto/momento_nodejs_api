@@ -285,13 +285,14 @@ INSERT INTO products (product_name, product_price) VALUES ("Fake Batarang", 239.
 INSERT INTO products (product_name, product_price) VALUES ("Web-Shooters", 237.19);
 INSERT INTO products (product_name, product_price) VALUES ("Ant Man's Helmet", 289.29);
 INSERT INTO products (product_name, product_price) VALUES ("Ultimate Nullifier", 750.19);
-INSERT INTO products (product_name, product_price) VALUES ("Lasso of Lie", 649.13);
+INSERT INTO products (product_name, product_price) VALUES ("Lasso of Lie", 325.13);
 INSERT INTO products (product_name, product_price) VALUES ("Iron-man MK 5 Helmet", 322.29);
 INSERT INTO products (product_name, product_price) VALUES ("Mace Windu Lightsaber", 990.29);
 INSERT INTO products (product_name, product_price) VALUES ("Bolivar Trask's Sentinels", 150.13 );
 INSERT INTO products (product_name, product_price) VALUES ("Unstable Molecules Uniform", 158.29);
-INSERT INTO products (product_name, product_price) VALUES ("Lasso of Truth", 100.29);
+INSERT INTO products (product_name, product_price) VALUES ("Lasso of Truth", 649.29);
 INSERT INTO products (product_name, product_price) VALUES ("Real Batarang", 900.29);
+INSERT INTO products (product_name, product_price) VALUES ("Robins' R", 900.29);
 
 -- Inserting data for Sales
 INSERT INTO sales VALUES (35864200, 3, 19, '2023-06-05', 176);
@@ -449,10 +450,10 @@ INNER JOIN  employees
 CREATE OR REPLACE VIEW `sales_report` AS
 SELECT 
     sales.sale_id as 'ticket', 
-    sales.quantity as 'quantity', 
+    sales.quantity as 'quantity_sold', 
     products.product_name as 'product',
     products.product_id as 'product_id',
-    products.product_price as 'price',
+    products.product_price as 'unit_price',
     sales.sale_date, 
     employees.employee_id, 
     CONCAT(employees.first_name, ' ', employees.last_name) AS 'employee_name'
@@ -461,6 +462,17 @@ INNER JOIN  employees
 	ON sales.employee_id = employees.employee_id
 INNER JOIN  products 
 	ON sales.product_id = products.product_id;  
+
+
+  -- Creating sales_report VIEW 
+CREATE OR REPLACE VIEW `sales_employee_performance` AS
+SELECT 
+  CONCAT(employees.first_name, ' ', employees.last_name) AS employee_name,
+  SUM(sales.quantity * products.product_price) AS total_sales
+    FROM sales
+  INNER JOIN employees ON sales.employee_id = employees.employee_id
+  INNER JOIN products ON sales.product_id = products.product_id
+  GROUP BY employees.employee_id; 
 
 -- Selecting data from VIEW
 SELECT * From data_employees;
