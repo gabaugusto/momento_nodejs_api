@@ -450,17 +450,17 @@ INNER JOIN  funcionarios
 CREATE OR REPLACE VIEW `relatorio_vendas` AS
 SELECT 
     vendas.venda_id as 'ticket', 
-    vendas.quantidade as 'quantidade_sold', 
-    produtos.produto_nome as 'product',
+    vendas.quantidade as 'quantidade_vendida', 
+    produtos.produto_nome as 'produto',
     produtos.produto_id as 'produto_id',
-    produtos.produto_price as 'unit_price',
+    produtos.produto_price as 'preco_unitario',
     vendas.venda_data, 
     funcionarios.funcionario_id, 
     CONCAT(funcionarios.primeiro_nome, ' ', funcionarios.sobrenome) AS 'funcionario_nome'
 	FROM vendas 
-INNER JOIN  funcionarios 
+INNER JOIN funcionarios 
 	ON vendas.funcionario_id = funcionarios.funcionario_id
-INNER JOIN  produtos 
+INNER JOIN produtos 
 	ON vendas.produto_id = produtos.produto_id;  
 
 
