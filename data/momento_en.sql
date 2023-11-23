@@ -99,9 +99,9 @@ CREATE TABLE sales (
 );
 
 CREATE TABLE audit_log (
-    log_id INT PRIMARY KEY auto_increment,
+    log_id INT PRIMARY KEY AUTO_INCREMENT,
     log_action VARCHAR(100),
-    log_ts TIMESTAMP,
+    log_ts NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     employee_id INT NOT NULL,
     FOREIGN KEY (employee_id) REFERENCES employees(employee_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
