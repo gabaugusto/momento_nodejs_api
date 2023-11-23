@@ -452,7 +452,7 @@ app.get('/sales_over_time', (req, res) => {
 });
 
 app.get('/sales_by_product', (req, res) => {
-  const query = `SELECT products.product_name AS product, SUM(sales.quantity) AS total_quantity_sold, SUM((sales.quantity * products.product_price)/100) AS total_value_sold FROM sales INNER JOIN products ON sales.product_id = products.product_id GROUP BY products.product_name;`;
+  const query = `SELECT product, SUM(quantity_sold), SUM((quantity_sold *unit_price)/100) AS total_value_sold FROM sales_report GROUP BY product;`;
   db.query(query, (err, results) => {
     if (err) {
       console.error('Error fetching records: ' + err);
