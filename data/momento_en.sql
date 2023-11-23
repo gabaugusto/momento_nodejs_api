@@ -101,7 +101,7 @@ CREATE TABLE sales (
 CREATE TABLE audit_log (
     log_id INT PRIMARY KEY AUTO_INCREMENT,
     log_action VARCHAR(100),
-    log_ts NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    log_ts DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     employee_id INT NOT NULL,
     FOREIGN KEY (employee_id) REFERENCES employees(employee_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -237,6 +237,7 @@ INSERT INTO positions(position_id,position_name,min_salary,max_salary) VALUES (1
 INSERT INTO positions(position_id,position_name,min_salary,max_salary) VALUES (18,'Stockist',2000.00,5000.00);
 INSERT INTO positions(position_id,position_name,min_salary,max_salary) VALUES (19,'Stock Manager',5500.00,8500.00);
 INSERT INTO positions(position_id,position_name,min_salary,max_salary) VALUES (20,'Scientist',14200.00,35000.00);
+INSERT INTO positions(position_id,position_name,min_salary,max_salary) VALUES (21,'Quality Assurance Assistant',6200.00,12000.00);
 
 INSERT INTO employees(employee_id,first_name,last_name,email,emp_password,phone,date_contract,position_id,salary,manager_id,departament_id) VALUES (100,'Steven','Wayne','steven.wayne@momento.org','@4@8@15@16','515.123.4567','1987-06-17',4,24000.00,NULL,9);
 INSERT INTO employees(employee_id,first_name,last_name,email,emp_password,phone,date_contract,position_id,salary,manager_id,departament_id) VALUES (101,'Neena','Kochhar','neena.kochhar@momento.org','@48@15@16','515.123.4568','1989-09-21',5,17000.00,100,9);

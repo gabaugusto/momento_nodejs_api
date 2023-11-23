@@ -155,88 +155,89 @@ INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado
 INSERT INTO escritorios(escritorio_id,escritorio_nome,endereco,cep,cidade,estado_provincia,pais_id) VALUES (1900,"House of Mystery escritorios",'The Trickster Rd. 42','80925','Newcastle','North East England','UK');
 
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 20, 100000.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Printers', 3, 500.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Paper', 50, 21000.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 3, 500.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 50, 21000.00, 1400);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 20, 1500.00, 1400);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 5000, 852.65, 1700);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1700);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1700);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Stapler', 20, 500.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 2500);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 15, 200000.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Printers', 20, 500.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Paper', 50, 1000.00, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 20, 500.00, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 50, 1000.00, 3900);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 20, 500.00, 3900);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 50, 1000.00, 1900);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1900);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1800);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Stapler', 20, 500.00, 1900);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 1900);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 40, 200000.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Printers', 3, 500.00, 2400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Paper', 50, 752.85, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 3, 500.00, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 50, 752.85, 2400);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 20, 500.00, 2400);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 50, 1000.00, 2400);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 2500);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Stapler', 20, 500.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 2500);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 1, 2000.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Printers', 2, 500.00, 1400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Paper', 50, 21000.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 2, 500.00, 1400);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 50, 21000.00, 1400);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 20, 1500.00, 1400);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 50, 1197.42, 1700);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1700);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1700);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Stapler', 20, 500.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 2500);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 15, 200000.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Printers', 1, 500.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Paper', 5000, 752.85, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 1, 500.00, 3900);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 5000, 752.85, 3900);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 2010, 500.00, 3900);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 50, 1000.00, 1900);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 1900);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 1800);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Stapler', 20, 500.00, 1900);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 20, 500.00, 1900);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Computers', 40, 200000.00, 3900);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Printers', 2, 500.00, 2400);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Paper', 50, 752.85, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Impressoras', 2, 500.00, 2400);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Papel', 50, 752.85, 2400);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Planners', 20, 500.00, 2400);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Post-its', 5000, 1000.00, 2400);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Highlighter', 20, 500.00, 2500);
 INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Notebook', 50, 1000.00, 2500);
-INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Stapler', 10, 500.00, 2500);
+INSERT INTO suprimentos (suprimento_nome,quantidade,custo,escritorio_id) VALUES ('Grampeadores', 10, 500.00, 2500);
 
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (1,'Administration',1700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (1,'Administração',1700);
 INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (2,'Marketing',1800);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (3,'Resources',1700);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (4,'Human Resources',2400);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (5,'Transports',1500);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (6,'Tecnology',1400);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (7,'Public Relations',2700);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (8,'vendas',2500);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (9,'Executive',1700);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (10,'Finance',1700);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (11,'Accounting',1700);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (12,'Biotechnologies',3900);
-INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (13,'Advanced Technologies',1900);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (3,'Suprimentos',1700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (4,'Recursos Humanos',2400);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (5,'Transportes',1500);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (6,'Tecnologia',1400);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (7,'Relações Públicas',2700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (8,'Vendas',2500);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (9,'Executivo',1700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (10,'Finanças',1700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (11,'Contabilidade',1700);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (12,'Biotecnologia',3900);
+INSERT INTO departamentos(departamento_id,departamento_nome,escritorio_id) VALUES (13,'Tecnologias Avançadas',1900);
 
 INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (1,'Junior Warehouse Assistant',4200.00,9000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (2,'Accounting Manager',8200.00,16000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (3,'Administrative Assistant',3000.00,6000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (2,'Gerente de Contabilidade',8200.00,16000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (3,'Assistente Administrativo',3000.00,6000.00);
 INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (4,'CEO',20000.00,40000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (5,'Director of Administration, Accounting and Resources',15000.00,30000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (6,'Accounting',4200.00,9000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (5,'Diretor de Administração, Contabilidade e Recursos',15000.00,30000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (6,'Contabilidade',4200.00,9000.00);
 INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (7,'CFO',8200.00,16000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (8,'Resources Representative',4000.00,9000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (8,'Assistente de Recursos',4000.00,9000.00);
 INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (9,'Web Developer',4000.00,10000.00);
 INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (10,'CMO',9000.00,15000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (11,'vendas Representative for Latin America',4000.00,9000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (12,'Public Relations',4500.00,10500.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (11,'Representante de Vendas para a América Latina',4000.00,9000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (12,'Relações Públicas',4500.00,10500.00);
 INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (13,'Purchasing Clerk',2500.00,5500.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (14,'Resources Manager',8000.00,15000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (15,'vendas Manager',10000.00,20000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (16,'vendas Representative',6000.00,12000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (17,'Seller',2500.00,5500.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (18,'Stockist',2000.00,5000.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (19,'Stock Manager',5500.00,8500.00);
-INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (20,'Scientist',14200.00,35000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (14,'Gerente de Recursos',8000.00,15000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (15,'Gerente de Vendas',10000.00,20000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (16,'Representante de Vendas',6000.00,12000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (17,'Consultor de Vendas',2500.00,5500.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (18,'Estoquista',2000.00,5000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (19,'Gerente de Estoque',5500.00,8500.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (20,'Cientista',14200.00,35000.00);
+INSERT INTO cargos(cargo_id,cargo_nome,min_salario,max_salario) VALUES (21,'Assitente de Garantia de Qualidade',6200.00,12000.00);
 
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (100,'Steven','Wayne','steven.wayne@momento.org','@4@8@15@16','515.123.4567','1987-06-17',4,24000.00,NULL,9);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (101,'Neena','Kochhar','neena.kochhar@momento.org','@48@15@16','515.123.4568','1989-09-21',5,17000.00,100,9);
@@ -280,19 +281,19 @@ INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,tele
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (206,'Susan','Storm','susan.storm@momento.org','@4@8@15@16','515.123.8181','1994-06-07',20,18300.00,205,12);
 INSERT INTO funcionarios(funcionario_id,primeiro_nome,sobrenome,email,senha,telefone,data_contratacao,cargo_id,salario,gerente_id,departamento_id) VALUES (207,'Lucius','Fox','lucius.fox@momento.org','@4@8@15@16','515.124.4569','1994-08-17',7,12000.00,101,10);
 
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Superman's Cape", 300.13);
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("Uniforme do Superman", 300.13);
 INSERT INTO produtos (produto_nome, produto_price) VALUES ("Fake Batarang", 239.29);
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Web-Shooters", 237.19);
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Ant Man's Helmet", 289.29);
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Ultimate Nullifier", 750.19);
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Lasso of Lie", 325.13);
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("Lança-Teias", 237.19);
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("Capacete do Homem-Formiga", 289.29);
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("Nulificador Total", 750.19);
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("Laço da Verdade", 325.13);
 INSERT INTO produtos (produto_nome, produto_price) VALUES ("Iron-man MK 5 Helmet", 322.29);
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Mace Windu Lightsaber", 990.29);
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Bolivar Trask's Sentinels", 150.13 );
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Unstable Molecules Uniform", 158.29);
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Lasso of Truth", 649.29);
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Real Batarang", 900.29);
-INSERT INTO produtos (produto_nome, produto_price) VALUES ("Robins' R", 900.29);
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("Sabre de Luz (Mace Windu)", 990.29);
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("Sentinelas do Bolivar Trask", 150.13 );
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("Uniforme de Moléculas Instáveis", 158.29);
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("Laço da Honestidade", 649.29);
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("Batarangs Oficiais", 900.29);
+INSERT INTO produtos (produto_nome, produto_price) VALUES ("R do Robin", 900.29);
 
 -- Inserting data for vendas
 INSERT INTO vendas VALUES (35864200, 3, 19, '2023-06-05', 176);
@@ -304,7 +305,6 @@ INSERT INTO vendas VALUES (11508951, 1, 10, '2023-06-19', 145);
 INSERT INTO vendas VALUES (19290129, 9, 14, '2023-06-20', 178);
 INSERT INTO vendas VALUES (29290213, 4, 55, '2023-06-21', 145);
 INSERT INTO vendas VALUES (12508951, 10, 13, '2023-06-29', 145);
-
 INSERT INTO vendas VALUES (89864008, 12, 3, '2023-07-05', 176);
 INSERT INTO vendas VALUES (46073321, 1, 167, '2023-07-10', 176);
 INSERT INTO vendas VALUES (14131021, 3, 10, '2023-07-13', 177);
@@ -355,30 +355,30 @@ INSERT INTO dependentes(dependente_id,primeiro_nome,sobrenome,relacionamento,fun
 
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 08:00:01', 100);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 08:22:00', 107);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Request Password Assistance', '2023-01-15 08:25:33', 106);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 08:25:33', 106);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 08:41:17', 110);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 08:45:02', 111);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Request Password Assistance', '2023-01-15 08:47:22', 177);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Changed Password', '2023-01-15 08:49:22', 177);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 08:47:22', 177);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Alterou a Senha', '2023-01-15 08:49:22', 177);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 08:51:24', 177);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:01:00', 101);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Request Password Assistance', '2023-01-15 09:05:00', 114);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Changed Password', '2023-01-15 09:08:22', 206);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:05:00', 114);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Alterou a Senha', '2023-01-15 09:08:22', 206);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:18:00', 123);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:32:00', 200);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:31:24', 204);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:18', 207);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Request Password Assistance', '2023-01-15 09:45:33', 193);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:45:18', 207);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:45:33', 193);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:47:01', 121);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:17', 103);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:19', 103);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Request Password Assistance', '2023-01-15 09:51:19', 192);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:51:17', 103);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:51:19', 103);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 09:51:19', 192);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 09:52:00', 118);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 10:32:00', 119);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Changed Password', '2023-01-15 11:08:22', 120);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Request Password Assistance', '2023-01-15 11:45:29', 122);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Alterou a Senha', '2023-01-15 11:08:22', 120);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 11:45:29', 122);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 12:00:29', 109);
-INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Request Password Assistance', '2023-01-15 13:13:21', 207);
+INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Solicitou a Alteração de Senha', '2023-01-15 13:13:21', 207);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 14:19:13', 109);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 17:57:19', 203);
 INSERT INTO audit_log(log_acao, log_ts, funcionario_id) VALUES ('Login', '2023-01-15 18:32:29', 205);
@@ -392,15 +392,15 @@ SELECT
   funcionarios.telefone AS telefone, 
   funcionarios.email AS email, 
   funcionarios.data_contratacao AS data_contratacao, 
+  cargos.cargo_nome AS cargo, 
   funcionarios.salario AS salario, 
-  cargos.cargo_nome AS position, 
   cargos.min_salario AS min_salario, 
   cargos.max_salario AS max_salario, 
-  departamentos.departamento_nome AS departament, 
-  escritorios.escritorio_nome AS office, 
+  departamentos.departamento_nome AS departamento, 
+  escritorios.escritorio_nome AS escritorio, 
   escritorios.endereco AS endereco, 
-  paises.pais_nome AS country, 
-  regioes.regiao_nome AS region
+  paises.pais_nome AS pais, 
+  regioes.regiao_nome AS regiao
 
  FROM funcionarios
 
@@ -439,7 +439,7 @@ INNER JOIN escritorios
 -- Creating audit VIEW 
 CREATE OR REPLACE VIEW `relatorio_auditoria` AS
 SELECT 
-    audit_log.log_acao as `action`, 
+    audit_log.log_acao as `acao`, 
     audit_log.log_ts as `timestamp`, 
     CONCAT(funcionarios.primeiro_nome, ' ', funcionarios.sobrenome) AS 'funcionario_nome'
 	FROM audit_log 
